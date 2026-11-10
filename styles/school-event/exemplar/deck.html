@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>这半年 · school-event 样板</title>
+<script>{const t=new URLSearchParams(location.search).get('theme');if(t)document.documentElement.dataset.theme=t}</script>
+<link rel="stylesheet" href="../tokens.css">
+<link rel="stylesheet" href="../../../lib/base.css">
+<link rel="stylesheet" href="../components.css">
+<style>
+/* 本页专属：只放坐标和尺寸 */
+#e1 .pill{left:120px;top:120px}
+#e1 .t1{left:112px;top:210px}
+#e1 .t2{left:112px;top:380px}
+#e1 .sub{left:120px;top:600px;font-size:40px}
+#e1 .who{left:120px;top:770px}
+
+#e2 .h2{left:120px;top:90px}
+#e2 .say{left:1330px;top:96px}
+
+#e3 .h2{left:120px;top:70px}
+
+#e4 .notepaper{left:110px;top:150px;width:920px;height:820px;--r:-1.5deg;padding:44px 40px 0 130px}
+#e4 .signs{position:relative;margin-top:36px;height:240px}
+#e4 .signs span{position:absolute;white-space:nowrap;transform:rotate(var(--r));font:400 40px var(--f-display);color:var(--c-ink-2)}
+#e4 .signs span:first-child{font:400 30px var(--f-hand);color:var(--c-ink-3)}
+#e4 .signs span.a{color:var(--c-accent-ink)}
+#e4 .signs span.b{color:var(--c-primary-2);font-family:var(--f-hand)}
+#e4 .signs span:last-child{font:400 26px var(--f-hand);color:var(--c-ink-3)}
+#e4 .notepaper .nh{font:400 52px/64px var(--f-display);color:var(--c-ink);margin-bottom:0}
+#e4 .go1{left:1160px;top:200px;font-size:200px}
+#e4 .go2{left:1160px;top:430px;font-size:200px}
+#e4 .sign{left:1170px;top:720px}
+</style>
+</head>
+<body>
+
+<!-- ======================= 封面 ======================= -->
+<section class="slide" id="e1">
+  <svg class="abs" id="e1-bg" width="1920" height="1080" style="left:0;top:0"></svg>
+  <figure class="polaroid" style="left:1100px;top:110px;width:410px;height:470px;--r:-6deg"><div class="photo" data-label="开学第一天"></div><figcaption>9.1 开学第一天</figcaption></figure>
+  <figure class="polaroid" style="left:1490px;top:420px;width:370px;height:420px;--r:7deg"><div class="photo" data-label="运动会"></div><figcaption>运动会 冲线！</figcaption></figure>
+  <figure class="polaroid" style="left:1090px;top:600px;width:370px;height:410px;--r:3deg"><div class="photo" data-label="班级合影"></div><figcaption>全班 46 人</figcaption></figure>
+  <div class="tape" style="left:1230px;top:92px;--r:-10deg"></div>
+  <div class="tape" style="left:1600px;top:406px;--r:12deg;--tape:var(--c-tape-b)"></div>
+  <div class="tape" style="left:1200px;top:590px;--r:-3deg;--tape:var(--c-tape-c)"></div>
+  <svg class="abs" id="e1-fg" width="1920" height="1080" style="left:0;top:0;pointer-events:none"></svg>
+  <div class="sticker-t" style="left:1765px;top:168px;--r:12deg">期中<br>特辑</div>
+
+  <div class="abs pill">高二 (3) 班 · 期中主题班会</div>
+  <div class="abs title t1">这半年，</div>
+  <div class="abs title t2">我们<span class="hi">一起</span>走过</div>
+  <div class="abs handnote sub">把这 100 多天，慢慢讲给大家听</div>
+  <div class="abs handnote who">主持人：李同学 &amp; 王同学<br>2026.11.14 · 周五第 7 节</div>
+</section>
+
+<!-- ======================= 流程 ======================= -->
+<section class="slide" id="e2">
+  <svg class="abs" id="e2-bg" width="1920" height="1080" style="left:0;top:0"></svg>
+  <div class="abs h2">今天的流程</div>
+  <div class="say">40 分钟，五件事<br>手机先静音哦～</div>
+  <div id="e2-stops"></div>
+</section>
+
+<!-- ======================= 照片墙 ======================= -->
+<section class="slide" id="e3">
+  <svg class="abs" id="e3-bg" width="1920" height="1080" style="left:0;top:0"></svg>
+  <div class="abs h2">我们的高光时刻</div>
+  <figure class="polaroid" style="left:110px;top:230px;width:380px;height:380px;--r:-5deg"><div class="photo" data-label="军训汇演"></div><figcaption>军训汇演</figcaption></figure>
+  <figure class="polaroid" style="left:510px;top:200px;width:360px;height:370px;--r:4deg"><div class="photo" data-label="运动会接力"></div><figcaption>4×100 接力</figcaption></figure>
+  <figure class="polaroid" style="left:890px;top:250px;width:340px;height:350px;--r:-3deg"><div class="photo" data-label="秋游爬山"></div><figcaption>秋游 · 爬到山顶</figcaption></figure>
+  <figure class="polaroid" style="left:250px;top:672px;width:360px;height:376px;--r:3deg"><div class="photo" data-label="黑板报"></div><figcaption>黑板报一等奖</figcaption></figure>
+  <figure class="polaroid" style="left:670px;top:660px;width:400px;height:390px;--r:-4deg"><div class="photo" data-label="教师节"></div><figcaption>教师节的小惊喜</figcaption></figure>
+  <div class="tape" style="left:220px;top:214px;--r:-8deg"></div>
+  <div class="tape" style="left:620px;top:184px;--r:6deg;--tape:var(--c-tape-c)"></div>
+  <div class="tape" style="left:980px;top:236px;--r:-4deg;--tape:var(--c-tape-b)"></div>
+  <div class="tape" style="left:350px;top:654px;--r:5deg;--tape:var(--c-tape-b)"></div>
+  <div class="tape" style="left:790px;top:644px;--r:-6deg"></div>
+  <svg class="abs" id="e3-fg" width="1920" height="1080" style="left:0;top:0;pointer-events:none"></svg>
+  <div class="sticker-t" style="left:880px;top:200px;--r:-12deg">团体<br>第二！</div>
+
+  <div class="hstat" style="left:1360px;top:250px"><div class="v">12<small>次</small></div><div class="k">班级活动，一次没落下</div></div>
+  <div class="hstat" style="left:1360px;top:510px"><div class="v">46<small>人</small></div><div class="k">每个人都上过一次镜</div></div>
+  <div class="hstat" style="left:1360px;top:770px"><div class="v">3<small>项二等奖</small></div><div class="k">黑板报、合唱、征文</div></div>
+</section>
+
+<!-- ======================= 约定 + 结尾 ======================= -->
+<section class="slide" id="e4">
+  <svg class="abs" id="e4-bg" width="1920" height="1080" style="left:0;top:0"></svg>
+  <div class="notepaper">
+    <div class="nh">下半学期，我们约好：</div>
+    <ul class="check">
+      <li class="done">每周一次班级夜跑<small>已经开始啦</small></li>
+      <li>期末平均分再进 5 名</li>
+      <li>每人读完 3 本课外书</li>
+      <li>寒假前办一次「班级春晚」</li>
+      <li>谁过生日，全班都记得</li>
+    </ul>
+    <div class="signs">
+      <span style="left:0;top:0;--r:-4deg">全班签名 ↓</span>
+      <span style="left:30px;top:70px;--r:-8deg" class="a">小林</span>
+      <span style="left:170px;top:58px;--r:5deg" class="b">阿杰</span>
+      <span style="left:300px;top:84px;--r:-3deg">朵朵</span>
+      <span style="left:440px;top:62px;--r:9deg" class="a">王一一</span>
+      <span style="left:610px;top:80px;--r:-6deg" class="b">安安</span>
+      <span style="left:90px;top:150px;--r:4deg" class="b">陈同学</span>
+      <span style="left:270px;top:160px;--r:-7deg" class="a">小周</span>
+      <span style="left:420px;top:150px;--r:3deg">豆豆</span>
+      <span style="left:560px;top:166px;--r:-2deg" class="a">+ 另外 38 位同学</span>
+    </div>
+  </div>
+  <div class="tape" style="left:480px;top:128px;--r:-3deg;width:200px;--tape:var(--c-tape-c)"></div>
+  <svg class="abs" id="e4-fg" width="1920" height="1080" style="left:0;top:0;pointer-events:none"></svg>
+
+  <div class="abs title go1">继续</div>
+  <div class="abs title go2"><span class="hi">冲！</span></div>
+  <div class="abs handnote sign">—— 高二 (3) 班，全体 46 人</div>
+</section>
+
+<script src="../../../lib/shapes.js"></script>
+<script>
+const S = Shapes, $ = (id) => document.getElementById(id);
+const blobOp = +getComputedStyle(document.documentElement).getPropertyValue('--deco-blob-opacity') || .3;
+const conf = S.T('confetti').split(/\s+/);
+
+/* 封面 */
+S.blob($('e1-bg'), null, {cx:1480, cy:560, r:430, seed:5, fill:S.T('primary-lt'), opacity:blobOp});
+S.blob($('e1-bg'), null, {cx:180, cy:1010, r:200, seed:9, fill:S.T('accent-hi'), opacity:blobOp});
+S.confetti($('e1-bg'), null, {seed:21, n:46, area:[40,40,1840,1000], avoid:[[90,90,1000,800],[1060,80,820,960]]});
+S.squiggle($('e1-fg'), null, {x:122, y:680, w:420, amp:9, period:42, width:6, stroke:S.T('accent')});
+S.starburst($('e1-fg'), null, {cx:1765, cy:168, r:100, spikes:14, inner:.8, fill:S.T('accent'), rotate:8,
+  stroke:S.T('ink'), strokeWidth:parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--se-stroke'))||0});
+
+/* 流程：蜿蜒路径，标签按节点位置放在曲线上方或下方 */
+(function(){
+  const stops = [
+    {t:'14:00', h:'暖场', d:'猜猜这是谁的小学照'},
+    {t:'14:05', h:'半学期回顾', d:'班长带大家翻相册'},
+    {t:'14:15', h:'高光颁奖', d:'6 个班级小奖项'},
+    {t:'14:28', h:'心里话', d:'匿名纸条现场读'},
+    {t:'14:38', h:'许个约定', d:'全班一起签名'},
+  ];
+  const y0 = 650;
+  S.blob($('e2-bg'), null, {cx:1750, cy:980, r:260, seed:4, fill:S.T('accent-hi'), opacity:blobOp});
+  S.squiggle($('e2-bg'), null, {x:124, y:212, w:360, amp:9, period:42, width:6});
+  const pts = S.windingPath($('e2-bg'), {stops}, {x:180, y:y0, w:1560, amp:150, waves:1.5, colors:conf});
+  S.confetti($('e2-bg'), null, {seed:33, n:22, area:[40,240,1840,80]});
+  S.confetti($('e2-bg'), null, {seed:34, n:22, area:[40,960,1500,90]});
+  const box = $('e2-stops');
+  pts.forEach(([x, y], i) => {
+    const s = stops[i], up = y > y0 - 1 && i % 2 == 0 ? false : y < y0;
+    const d = document.createElement('div');
+    d.className = 'stop';
+    d.style.left = x + 'px';
+    d.style.top = (y < y0 ? y + 52 : y - 210) + 'px';
+    d.innerHTML = `<div class="tm">${s.t}</div><h4>${s.h}</h4><p>${s.d}</p>`;
+    box.appendChild(d);
+  });
+})();
+
+/* 照片墙 */
+S.blob($('e3-bg'), null, {cx:620, cy:620, r:520, seed:14, sx:1.25, fill:S.T('primary-lt'), opacity:blobOp});
+S.confetti($('e3-bg'), null, {seed:41, n:30, area:[1250,60,640,980], avoid:[[1340,230,480,760]]});
+S.starburst($('e3-fg'), null, {cx:880, cy:200, r:88, spikes:14, inner:.8, fill:S.T('accent'), rotate:-6,
+  stroke:S.T('ink'), strokeWidth:parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--se-stroke'))||0});
+[[1432,312,98],[1432,572,98],[1398,832,64]].forEach(([cx,cy,rx],i)=>S.scribbleCircle($('e3-fg'), null, {cx, cy, rx, ry:74, seed:50+i, width:4, stroke:S.T('ink')}));
+
+/* 结尾 */
+S.blob($('e4-bg'), null, {cx:1500, cy:470, r:420, seed:8, fill:S.T('primary-lt'), opacity:blobOp});
+S.confetti($('e4-bg'), null, {seed:61, n:70, area:[1060,40,840,1000], avoid:[[1150,190,600,640]]});
+S.squiggle($('e4-fg'), null, {x:1172, y:800, w:460, amp:9, period:42, width:6});
+</script>
+</body>
+</html>

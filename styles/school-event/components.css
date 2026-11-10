@@ -1,0 +1,83 @@
+/* school-event 组件：用「实物」组织信息（拍立得、胶带、便签、贴纸），而不是圆角卡片。
+ * 立体感、描边由 --se-shadow / --se-stroke 控制，两套主题共用一份结构。 */
+
+.slide{background:radial-gradient(circle,var(--se-dots) 1.7px,transparent 2px) 0 0/36px 36px,var(--c-surface)}
+
+/* ---------- 文字 ---------- */
+.title{font:400 var(--t1)/1.18 var(--f-display);color:var(--c-ink)}
+.h2{font:400 var(--t2)/1.1 var(--f-display);color:var(--c-ink)}
+.hi{background:linear-gradient(transparent 52%,var(--c-hl) 52% 90%,transparent 90%);padding:0 8px;margin:0 -4px}
+.handnote{font:400 var(--t5)/1.6 var(--f-hand);color:var(--c-ink-2)}
+.pill{display:inline-flex;align-items:center;gap:12px;padding:10px 28px;border-radius:999px;background:var(--c-primary);color:var(--c-on-dark);
+  font:400 26px var(--f-label);letter-spacing:2px;border:var(--se-stroke) solid var(--c-ink);box-shadow:var(--se-shadow)}
+
+/* ---------- 拍立得 ----------
+ * <figure class="polaroid" style="left;top;width;height;--r:-5deg">
+ *   <div class="photo" data-label="..."></div><figcaption>…</figcaption></figure> */
+.polaroid{position:absolute;background:var(--c-paper);transform:rotate(var(--r,0deg));
+  border:var(--se-stroke) solid var(--c-ink);box-shadow:var(--se-shadow)}
+.polaroid .photo{left:16px;top:16px;right:16px;bottom:72px}
+.polaroid figcaption{position:absolute;left:0;right:0;bottom:18px;text-align:center;font:400 30px var(--f-hand);color:var(--c-ink)}
+
+/* ---------- 纸胶带：两端撕口 ---------- */
+.tape{position:absolute;width:160px;height:42px;transform:rotate(var(--r,-4deg));opacity:.88;
+  background:repeating-linear-gradient(45deg,rgba(255,255,255,.35) 0 7px,transparent 7px 15px),var(--tape,var(--c-tape-a));
+  clip-path:polygon(0 12%,3% 0,7% 10%,11% 0,89% 0,93% 10%,97% 0,100% 12%,100% 88%,97% 100%,93% 90%,89% 100%,11% 100%,7% 90%,3% 100%,0 88%)}
+
+/* ---------- 对话气泡 ---------- */
+.say{position:absolute;background:var(--c-bubble);border:3px solid var(--c-ink);border-radius:30px;padding:22px 32px;
+  font:400 30px/1.5 var(--f-hand);color:var(--c-ink);box-shadow:var(--se-shadow)}
+.say::after{content:"";position:absolute;left:60px;bottom:-26px;width:34px;height:34px;background:var(--c-bubble);
+  border-right:3px solid var(--c-ink);border-bottom:3px solid var(--c-ink);transform:skewX(30deg) rotate(45deg)}
+
+/* ---------- 横线便签纸 + 待办勾选 ---------- */
+.notepaper{position:absolute;background:
+  linear-gradient(90deg,transparent 96px,rgba(var(--c-accent-rgb),.55) 96px 99px,transparent 99px),
+  repeating-linear-gradient(transparent 0 62px,var(--c-line) 62px 64px),var(--c-paper);
+  background-position:0 0,0 30px,0 0;transform:rotate(var(--r,0deg));border:var(--se-stroke) solid var(--c-ink);box-shadow:var(--se-shadow)}
+.check{list-style:none}
+.check li{position:relative;padding-left:72px;font:400 36px/64px var(--f-hand);color:var(--c-ink)}
+.check li::before{content:"";position:absolute;left:8px;top:15px;width:34px;height:34px;border:3px solid var(--c-ink);border-radius:7px;transform:rotate(-4deg)}
+.check li.done::after{content:"✓";position:absolute;left:10px;top:-10px;font:400 58px var(--f-display);color:var(--c-accent)}
+.check li small{font-size:24px;color:var(--c-ink-3);margin-left:10px}
+
+/* ---------- 流程站点标签（配合 Shapes.windingPath） ---------- */
+.stop{position:absolute;width:300px;transform:translateX(-50%);text-align:center}
+.stop .tm{font:700 30px var(--f-num);color:var(--c-accent-ink)}
+.stop h4{font:400 44px/1.2 var(--f-display);color:var(--c-ink);margin:4px 0}
+.stop p{font:400 26px/1.4 var(--f-hand);color:var(--c-ink-2)}
+
+/* ---------- 手写数字 ---------- */
+.hstat{position:absolute;width:420px}
+.hstat .v{font:700 120px/1 var(--f-num);color:var(--c-accent);white-space:nowrap}
+.hstat .v small{font:400 44px var(--f-display);color:var(--c-ink);margin-left:44px}  /* 留出手绘圈的位置 */
+.hstat .k{font:400 32px/1.4 var(--f-hand);color:var(--c-ink-2);margin-top:6px}
+
+/* 贴纸上的字（配合 Shapes.starburst） */
+.sticker-t{position:absolute;transform:translate(-50%,-50%) rotate(var(--r,0deg));text-align:center;font:400 32px/1.15 var(--f-display);color:var(--c-on-dark);white-space:nowrap}
+
+/* ---------- 便利贴：右下角翻折 ---------- */
+.sticky{position:absolute;width:310px;min-height:290px;padding:34px 30px 30px;transform:rotate(var(--r,0deg));
+  background:linear-gradient(135deg,transparent calc(100% - 46px),rgba(0,0,0,.10) calc(100% - 46px)),var(--note,var(--c-hl));
+  clip-path:polygon(0 0,100% 0,100% calc(100% - 46px),calc(100% - 46px) 100%,0 100%);
+  font:400 32px/1.5 var(--f-hand);color:var(--c-ink);filter:drop-shadow(0 10px 14px rgba(var(--c-dark-rgb),.18))}
+.sticky .who{display:block;margin-top:14px;font-size:22px;color:var(--c-ink-3)}
+
+/* ---------- 木夹子：配合 Shapes.rope 把拍立得挂起来 ---------- */
+.clip{position:absolute;width:26px;height:64px;transform:translateX(-50%) rotate(var(--r,0deg));border-radius:6px;
+  background:linear-gradient(90deg,var(--c-tape-a) 0 46%,rgba(0,0,0,.18) 46% 54%,var(--c-tape-a) 54%);
+  border:var(--se-stroke) solid var(--c-ink);box-shadow:0 3px 6px rgba(var(--c-dark-rgb),.2);z-index:3}
+
+/* ---------- 章节页大编号 ---------- */
+.sec-no{font:700 300px/1 var(--f-num);color:var(--c-accent)}
+.sec-t{font:400 150px/1.1 var(--f-display);color:var(--c-ink)}
+
+/* ================= pop 主题 ================= */
+[data-theme="pop"] .title,[data-theme="pop"] .h2{letter-spacing:-2px}
+[data-theme="pop"] .hi{background:var(--c-hl);padding:0 14px;margin:0 6px;border:4px solid var(--c-ink);box-shadow:6px 6px 0 var(--c-ink);display:inline-block;transform:rotate(-2deg);line-height:1.1}
+[data-theme="pop"] .tape{opacity:1;clip-path:none;border:3px solid var(--c-ink);background:var(--tape,var(--c-tape-a))}
+[data-theme="pop"] .say::after{border-width:3px}
+[data-theme="pop"] .notepaper{background:repeating-linear-gradient(transparent 0 62px,var(--c-line-soft) 62px 64px),var(--c-paper);background-position:0 30px,0 0}
+[data-theme="pop"] .check li::before{border-width:4px;border-radius:0;transform:none;background:var(--c-surface)}
+[data-theme="pop"] .stop h4{letter-spacing:-1px}
+[data-theme="pop"] .sticker-t{color:var(--c-ink)}

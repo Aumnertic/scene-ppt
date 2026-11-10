@@ -1,0 +1,85 @@
+/* roadshow-cn 分支的 HTML 组件。
+ * 颜色来源：角色变量（tokens.css 的 --c-*），以及下面「本分支可调颜色」块里的 --rc-*。
+ * --rc-* 是只有这套组件才用到的细分色阶，改主题时一起调整。 */
+:root{
+  /* ---- 本分支可调颜色 ---- */
+  --rc-backdrop:#333;            /* 浏览器预览时 slide 之间的底色，不进导出 */
+  --rc-accent-on-light:#B4862A;  /* .hl-d：浅底上的强调字 */
+  --rc-bar-end:#163f6b;          /* 顶栏渐变终点 */
+  --rc-nav:#C9D7E8;              /* 顶栏导航：非当前章节 */
+  --rc-nav-sep:#6F8AAA;          /* 顶栏导航：分隔符 */
+  --rc-pg-on-dark:#9FB4CC;       /* 深色页的页码 */
+  --rc-orb-1:#7fc3ff; --rc-orb-2:#1f5fa8; --rc-orb-3:#0d2d55;  /* 胶囊左侧圆球 */
+  --rc-tag-1:#1c5aa0; --rc-tag-2:#4a8fd6;                      /* 斜体标签条 */
+  --rc-bubble-tint-rgb:120,190,255; --rc-bubble-glow-rgb:80,170,255;  /* 玻璃气泡 */
+  --rc-table-rule:#9DB5CE;       /* 对比表行线 */
+  --rc-doc-edge:#c8d3df; --rc-doc-shadow:#dfe7f0; --rc-doc-line:#d5dee8;  /* 文档墙 */
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--rc-backdrop);font-family:var(--f-sans);color:var(--c-ink)}
+.slide{width:1920px;height:1080px;position:relative;overflow:hidden;margin:0 auto 40px;background:var(--c-surface)}
+.abs{position:absolute}
+svg{display:block}
+.gold-text,.accent-text{background:linear-gradient(180deg,var(--c-accent-hi) 0%,var(--c-accent) 45%,var(--c-accent-lo) 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hl{color:var(--c-accent);font-weight:700}
+.hl-d{color:var(--rc-accent-on-light);font-weight:700}
+
+/* ---------- 顶栏 ---------- */
+.bar{position:absolute;left:0;top:0;width:1920px;height:118px;background:linear-gradient(90deg,var(--c-deep),var(--c-dark) 60%,var(--rc-bar-end));display:flex;align-items:center;justify-content:space-between;padding:0 56px 0 48px;z-index:5}
+.bar::after{content:"";position:absolute;left:0;right:0;bottom:0;height:4px;background:linear-gradient(90deg,var(--c-accent) 0,var(--c-accent-hi) 30%,transparent 75%)}
+.bar .t{display:flex;align-items:center;gap:18px;color:var(--c-on-dark);font-size:58px;font-weight:800;letter-spacing:2px}
+.bar nav{color:var(--rc-nav);font-size:30px;font-weight:700;display:flex;align-items:baseline;gap:14px}
+.bar nav i{font-style:normal;color:var(--rc-nav-sep);font-weight:400}
+.bar nav b{color:var(--c-on-dark);font-size:40px}
+.pg{position:absolute;right:28px;bottom:18px;font:700 22px var(--f-num);color:var(--c-ink-2);z-index:6}
+.pg.lt{color:var(--rc-pg-on-dark)}
+
+/* ---------- 胶囊标签 ---------- */
+.capsule{display:inline-flex;align-items:center;height:52px;padding:0 30px 0 64px;border-radius:26px;background:linear-gradient(90deg,var(--c-primary-2),var(--c-primary));color:var(--c-on-dark);font-size:var(--t5);font-weight:800;position:relative;box-shadow:0 4px 10px rgba(var(--c-dark-rgb),.25)}
+.capsule::before{content:"";position:absolute;left:-6px;top:-6px;width:64px;height:64px;border-radius:50%;background:radial-gradient(circle at 35% 30%,var(--rc-orb-1),var(--rc-orb-2) 55%,var(--rc-orb-3));border:4px solid var(--c-on-dark);box-shadow:0 2px 8px rgba(0,0,0,.25)}
+.italic-tag{display:inline-block;padding:6px 40px 6px 26px;font:italic 800 var(--t5) var(--f-sans);color:var(--c-on-dark);background:linear-gradient(90deg,var(--rc-tag-1),var(--rc-tag-2) 70%,transparent);clip-path:polygon(0 0,100% 0,94% 100%,0 100%)}
+
+/* ---------- 列表 ---------- */
+ul.ar{list-style:none}
+ul.ar li{position:relative;padding-left:34px;line-height:1.5}
+ul.ar li::before{content:"➢";position:absolute;left:0;top:0;color:var(--c-accent)}
+.light ul.ar li::before{color:var(--c-primary-2)}
+
+/* ---------- 封面部件 ---------- */
+.bubble{position:absolute;border-radius:50%;display:flex;align-items:center;justify-content:center;text-align:center;color:var(--c-on-dark);font-weight:800;line-height:1.2;
+  background:radial-gradient(circle at 30% 25%,rgba(var(--c-on-dark-rgb),.55),rgba(var(--c-on-dark-rgb),.08) 35%,rgba(var(--rc-bubble-tint-rgb),.10) 70%,rgba(var(--c-on-dark-rgb),.35) 100%);
+  box-shadow:inset 0 0 22px rgba(var(--c-on-dark-rgb),.35),0 0 26px rgba(var(--rc-bubble-glow-rgb),.35)}
+.seal{position:absolute;width:120px;height:120px;border:5px solid var(--c-emph);border-radius:12px;color:var(--c-emph);font:700 46px/1.05 var(--f-wei);display:grid;grid-template-columns:1fr 1fr;place-items:center;padding:8px;transform:rotate(-6deg);background:rgba(var(--c-emph-rgb),.06)}
+
+/* ---------- 技术页部件 ---------- */
+.dash-box{position:absolute;border:3px dashed var(--c-leader);border-radius:6px;background:rgba(var(--c-surface-rgb),.65)}
+.formula{font:italic 30px var(--f-serif);color:var(--c-dark);text-align:center;letter-spacing:1px}
+.formula sub,.formula sup{font-size:20px}
+.innov{display:flex;gap:18px;align-items:flex-start}
+.innov+.innov{margin-top:22px}
+.hex{flex:none;width:62px;height:70px;clip-path:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%);background:linear-gradient(160deg,var(--c-accent-hi),var(--c-accent-lo));display:flex;align-items:center;justify-content:center;font:700 30px var(--f-num);color:var(--c-deep)}
+.innov h4{font-size:var(--t4);color:var(--c-dark);font-weight:800;margin-bottom:4px}
+.innov p{font-size:var(--t6);line-height:1.5;color:var(--c-ink-2)}
+
+/* ---------- 数据页部件 ---------- */
+.kpi{position:absolute;top:146px;width:420px;height:200px;border-radius:6px;color:var(--c-on-dark);padding:22px 28px;overflow:hidden;box-shadow:0 8px 20px rgba(var(--c-dark-rgb),.22)}
+.kpi h5{font-size:var(--t4);font-weight:800;text-align:center;letter-spacing:4px;padding-bottom:10px;border-bottom:1px solid rgba(var(--c-on-dark-rgb),.35)}
+.kpi .v{margin-top:14px;font:700 92px/1 var(--f-num);display:flex;align-items:baseline;gap:8px}
+.kpi .v small{font-size:40px}
+.kpi .d{position:absolute;right:26px;bottom:20px;font-size:var(--t7);color:rgba(var(--c-on-dark-rgb),.85);text-align:right;line-height:1.35}
+.kpi svg.up{position:absolute;right:30px;top:72px}
+.panel{position:absolute;background:var(--c-surface);border:1px solid var(--c-line);border-radius:6px;box-shadow:0 4px 14px rgba(var(--c-dark-rgb),.08)}
+.panel .ph{height:50px;display:flex;align-items:center;gap:12px;padding:0 20px;font-size:var(--t5);font-weight:800;color:var(--c-dark);border-bottom:2px solid var(--c-primary-2)}
+.panel .ph::before{content:"";width:8px;height:26px;background:var(--c-accent)}
+table.cmp{border-collapse:collapse;width:100%;font-size:var(--t7);text-align:center}
+table.cmp th{background:var(--c-dark);color:var(--c-on-dark);font-weight:800;padding:12px 6px;font-size:18px}
+table.cmp td{padding:11px 6px;border-bottom:1px dashed var(--rc-table-rule);color:var(--c-ink);font-family:var(--f-num),var(--f-sans);font-size:19px}
+table.cmp td:first-child{font-family:var(--f-sans);font-weight:700;color:var(--c-dark);text-align:left;padding-left:16px}
+table.cmp tr.ours td{background:linear-gradient(90deg,rgba(var(--c-accent-rgb),.35),rgba(var(--c-accent-rgb),.15));color:var(--c-accent-ink);font-weight:800}
+table.cmp tr.ours td:first-child{color:var(--c-accent-ink)}
+.side-tab{position:absolute;width:64px;background:linear-gradient(180deg,var(--c-primary-2),var(--c-deep));color:var(--c-on-dark);font-size:var(--t5);font-weight:800;writing-mode:vertical-rl;letter-spacing:10px;display:flex;align-items:center;justify-content:center;border-radius:4px}
+.doc{position:absolute;width:118px;height:150px;background:var(--c-surface);border:1px solid var(--rc-doc-edge);box-shadow:3px 4px 0 var(--rc-doc-shadow),6px 8px 12px rgba(0,0,0,.15)}
+.doc i{position:absolute;left:14px;right:14px;height:4px;background:var(--rc-doc-line)}
+.doc b{position:absolute;left:0;right:0;top:14px;text-align:center;font-size:15px;color:var(--c-dark)}
+.doc .st{position:absolute;right:10px;bottom:12px;width:44px;height:44px;border:3px solid var(--c-emph);border-radius:50%;color:var(--c-emph);font:700 13px/38px var(--f-wei);text-align:center;transform:rotate(-14deg);opacity:.85}
+.doc-cap{position:absolute;width:150px;text-align:center;font-size:var(--t7);font-weight:700;color:var(--c-dark)}

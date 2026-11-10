@@ -1,0 +1,66 @@
+/* 风格分支：school-event（班会 / 校园活动）
+ * 手作感和创意构图：拍立得、纸胶带、贴纸、手写字、彩纸屑、蜿蜒路径。不用 3D 和复杂流程图。
+ *
+ * 主题（<html data-theme="...">）：
+ * - handbook（默认）：手账拼贴。奶油点阵纸、珊瑚 + 薄荷 + 芥黄，手札体标题。适合感恩、毕业、回顾、读书分享。
+ * - pop：活力色块。粗黑描边 + 错位硬阴影，高饱和撞色，兰亭特黑标题。适合运动会、安全教育、竞选、社团招新。
+ *
+ * 字体：macOS 系统字体，用 PostScript 名选粗细（见 course-report/tokens.css 的说明）。不能随 Skill 打包。
+ */
+:root{
+  --c-deep:#3A2E28; --c-dark:#4A3B33;
+  --c-primary:#4FA89A; --c-primary-2:#3B8A7E; --c-primary-3:#6BBBAE; --c-primary-lt:#A8D9CF;
+  --c-accent:#EE7B5B; --c-accent-hi:#F6A88F; --c-accent-lo:#C95A3C; --c-accent-ink:#B4482B;
+  --c-emph:#EE7B5B; --c-emph-lo:#C95A3C;
+  --c-ink:#3A2E28; --c-ink-2:#6B5B50; --c-ink-3:#9C8B7E;
+  --c-on-dark:#FFFDF8; --c-surface:#FBF5EA; --c-bg-soft:#F6EEDF; --c-bg-pale:#F0E5D2; --c-tint:#F3EADB;
+  --c-line:#E3D5BF; --c-line-soft:#EEE4D3; --c-leader:#C9B8A0; --c-connector:#8C7B6E;
+  --c-dark-rgb:58,46,40; --c-accent-rgb:238,123,91; --c-emph-rgb:238,123,91; --c-on-dark-rgb:255,253,248; --c-surface-rgb:251,245,234;
+  --c-photo-a:#E9C9A8; --c-photo-b:#A8D2C8;
+  --c-confetti:#EE7B5B #4FA89A #F2C14E #8FB3E8 #F49AB6;
+
+  /* 本分支专用角色 */
+  --c-paper:#FFFFFF;        /* 拍立得相框、便签纸 */
+  --c-hl:#F7D86A;           /* 荧光笔 */
+  --c-tape-a:#F2C14E; --c-tape-b:#A8D9CF; --c-tape-c:#F49AB6;
+  --c-bubble:#FFFFFF;
+  --se-stroke:0px;          /* 描边粗细：handbook 无描边，pop 有 */
+  --se-shadow:0 12px 26px rgba(58,46,40,.18);   /* 立体感：柔和投影 vs 硬阴影 */
+  --se-dots:rgba(58,46,40,.12);                 /* 点阵纸 */
+  --deco-blob-opacity:.32;
+
+  --f-sans:"PingFang SC",sans-serif;
+  --f-display:"HannotateSC-W7","Hannotate SC",cursive;  /* 手札体粗 */
+  --f-hand:"HanziPenSC-W5","HanziPen SC",cursive;       /* 翩翩体：图注、便签 */
+  --f-label:"STYuanti-SC-Bold","Yuanti SC",sans-serif;  /* 圆体：标签 */
+  --f-num:"Chalkboard SE","Marker Felt",sans-serif;
+  --f-serif:var(--f-hand);
+
+  --t1:140px; --t2:96px; --t3:56px; --t4:40px; --t5:30px; --t6:24px; --t7:20px;
+}
+
+:root[data-theme="pop"]{
+  --c-deep:#141414; --c-dark:#141414;
+  --c-primary:#2F54FF; --c-primary-2:#1E3BD6; --c-primary-3:#5A78FF; --c-primary-lt:#9DB0FF;
+  --c-accent:#FF4F8B; --c-accent-hi:#FF8DB4; --c-accent-lo:#D6286A; --c-accent-ink:#C21F5E;
+  --c-emph:#FF4F8B; --c-emph-lo:#D6286A;
+  --c-ink:#141414; --c-ink-2:#333333; --c-ink-3:#666666;
+  --c-on-dark:#FFFFFF; --c-surface:#FFF1C9; --c-bg-soft:#FFE9AD; --c-bg-pale:#FFE08A; --c-tint:#FFF6DD;
+  --c-line:#141414; --c-line-soft:#E8D9A8; --c-leader:#141414; --c-connector:#141414;
+  --c-dark-rgb:20,20,20; --c-accent-rgb:255,79,139; --c-emph-rgb:255,79,139; --c-on-dark-rgb:255,255,255; --c-surface-rgb:255,241,201;
+  --c-photo-a:#8FA5FF; --c-photo-b:#B9C7FF;  /* 同色相深浅。不要做粉紫渐变：用户反馈「有 AI 感」 */
+  --c-confetti:#2F54FF #FF4F8B #FFC531 #22C08A #141414;
+
+  --c-paper:#FFFFFF; --c-hl:#FFC531;
+  --c-tape-a:#22C08A; --c-tape-b:#FFC531; --c-tape-c:#FF4F8B;
+  --c-bubble:#FFFFFF;
+  --se-stroke:4px;
+  --se-shadow:10px 10px 0 #141414;
+  --se-dots:transparent;
+  --deco-blob-opacity:1;
+
+  --f-display:"FZLTTHK--GBK1-0","PingFang SC",sans-serif;
+  --f-hand:"Wawati SC","DFWaWaSC-W5",cursive;
+  --f-label:"FZLTTHK--GBK1-0","PingFang SC",sans-serif;
+  --f-num:"Futura","Avenir Next",sans-serif;
+}

@@ -1,0 +1,61 @@
+/* 风格分支：curve-minimal（贝塞尔曲线极简）
+ * 核心美术语言：一根贯穿整套 deck 的贝塞尔曲线。每页从左边缘进、右边缘出，相邻两页进出高度相同、切线水平，
+ * 翻页时线是接上的。曲线每页承担一个信息任务（封面主形、目录路径、绕路的环、数据折线、强调的流向、终点）。
+ * 除了这根线，页面只有文字和细线，不用卡片、渐变和插画。
+ *
+ * 主题（<html data-theme="...">，render.py 第三个参数）：
+ * - pen（默认）：浅底等宽细线，露出锚点和控制柄，像钢笔工具。苹方极细标题、Helvetica Thin 数字。最「极简」的一档。
+ * - ribbon：深底，线变成宽笔尖书法线（粗细随走向变），曲线下方填色面，曲线成为页面的分割边界。宋体细 × Didot。
+ *
+ * 形状语言由 --k-curve 决定（line | nib），页面脚本读它来切换画法；颜色仍只读 --c-*。
+ * 字体：中文细档必须用 PostScript 名（PingFangSC-Ultralight、STSongti-SC-Light），已用 fontcheck.py 确认。
+ */
+:root{
+  --k-curve:line;
+
+  --c-deep:#16171A; --c-dark:#16171A;
+  --c-primary:#16171A; --c-primary-2:#000000; --c-primary-3:#3A3C40; --c-primary-lt:#9A9CA1;
+  --c-accent:#2B59FF; --c-accent-hi:#6A8BFF; --c-accent-lo:#1C3FCC; --c-accent-ink:#1C3FCC;
+  --c-emph:#2B59FF; --c-emph-lo:#1C3FCC;
+  --c-ink:#16171A; --c-ink-2:#55575C; --c-ink-3:#909297;
+  --c-on-dark:#FFFFFF; --c-surface:#F7F6F2; --c-bg-soft:#EFEDE7; --c-bg-pale:#E7E4DC; --c-tint:#EFEDE7;
+  --c-line:#D5D3CC; --c-line-soft:#E6E4DD; --c-leader:#A9A9A6; --c-connector:#55575C;
+  --c-dark-rgb:22,23,26; --c-accent-rgb:43,89,255; --c-emph-rgb:43,89,255; --c-on-dark-rgb:255,255,255; --c-surface-rgb:247,246,242;
+  --c-photo-a:#CFCCC4; --c-photo-b:#E4E1DA;
+  --c-confetti:#2B59FF #16171A #909297;
+  --c-flow:#16171A;          /* 【按需】flowRibbons 普通连接带（配合低透明度） */
+
+  --f-sans:"PingFang SC","Helvetica Neue",sans-serif;
+  --f-display:"PingFangSC-Ultralight","PingFang SC",sans-serif;
+  --f-head:"PingFangSC-Light","PingFang SC",sans-serif;
+  --f-body:"PingFangSC-Light","PingFang SC",sans-serif;
+  --f-label:"PingFangSC-Medium","PingFang SC",sans-serif;
+  --f-quote:var(--f-body);
+  --f-num:"HelveticaNeue-Thin","Helvetica Neue",sans-serif;
+  --f-num-display:"HelveticaNeue-UltraLight","Helvetica Neue",sans-serif;  /* 300px 以上的超大数字：比 Thin 更细，和细线同重 */
+  --f-latin:"Avenir Next","Helvetica Neue",sans-serif;
+  --f-serif:var(--f-body);
+
+  --t1:160px; --t2:96px; --t3:56px; --t4:40px; --t5:30px; --t6:24px; --t7:18px;
+}
+
+:root[data-theme="ribbon"]{
+  --k-curve:nib;
+
+  --c-deep:#0E1012; --c-dark:#141619;
+  --c-primary:#ECE7DD; --c-primary-2:#FFFFFF; --c-primary-3:#C9C3B8; --c-primary-lt:#75726B;
+  --c-accent:#D4F25A; --c-accent-hi:#E4F98F; --c-accent-lo:#A9C93A; --c-accent-ink:#D4F25A;
+  --c-emph:#D4F25A; --c-emph-lo:#A9C93A;
+  --c-ink:#ECE7DD; --c-ink-2:#ABA69C; --c-ink-3:#77746D;
+  --c-on-dark:#141619; --c-surface:#141619; --c-bg-soft:#23272C; --c-bg-pale:#2A2F35; --c-tint:#23272C;
+  --c-line:#3A3E44; --c-line-soft:#2A2E33; --c-leader:#55585E; --c-connector:#ABA69C;
+  --c-dark-rgb:14,16,18; --c-accent-rgb:212,242,90; --c-emph-rgb:212,242,90; --c-on-dark-rgb:20,22,25; --c-surface-rgb:20,22,25;
+  --c-photo-a:#2A2E33; --c-photo-b:#3A3E44;
+  --c-confetti:#D4F25A #ECE7DD #77746D;
+  --c-flow:#ECE7DD;
+
+  --f-display:"STSongti-SC-Light","Songti SC",serif;
+  --f-head:"STSongti-SC-Regular","Songti SC",serif;
+  --f-num:"Didot","Bodoni 72",serif;
+  --f-num-display:"Didot","Bodoni 72",serif;
+}

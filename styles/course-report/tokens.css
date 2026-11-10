@@ -1,0 +1,53 @@
+/* 风格分支：course-report（课程汇报）
+ * 杂志式编排：大字号展示字体、不对称构图、细线分隔、照片蒙版。不用 3D 和复杂流程图。
+ *
+ * 主题（<html data-theme="...">，render.py 第三个参数）：
+ * - paper（默认）：纸本暖色。宋体 Black 标题，朱红强调、墨绿辅色。适合人文社科、历史、文学。
+ * - swiss：瑞士网格。兰亭特黑 × 兰亭纤黑的粗细对比，黑白加一个电光蓝。适合理工、设计、数据类。
+ *
+ * 字体注意：macOS 上 Chrome 只能用 PostScript 名选中中文字体的粗细档，
+ * 例如 "STSongti-SC-Black"、"FZLTTHK--GBK1-0"（兰亭特黑）。只写族名加 font-weight 会回落到常规体。
+ * 这些都是 macOS 系统字体，不能随 Skill 打包；换系统时要换字体栈。
+ */
+:root{
+  --c-deep:#1C2620; --c-dark:#2B372F;
+  --c-primary:#2F5641; --c-primary-2:#244434; --c-primary-3:#3B6A51; --c-primary-lt:#8FB09A;
+  --c-accent:#C8462C; --c-accent-hi:#E27A5E; --c-accent-lo:#9E3420; --c-accent-ink:#9E3420;
+  --c-emph:#C8462C; --c-emph-lo:#9E3420;
+  --c-ink:#211C18; --c-ink-2:#5A5048; --c-ink-3:#8C8178;
+  --c-on-dark:#F6F1E7; --c-surface:#F3EEE4; --c-bg-soft:#EDE6D8; --c-bg-pale:#E6DDCB; --c-tint:#EAE2D2;
+  --c-line:#CDBFAA; --c-line-soft:#DED4C3; --c-leader:#A99A84; --c-connector:#6E6255;
+  --c-dark-rgb:43,55,47; --c-accent-rgb:200,70,44; --c-emph-rgb:200,70,44; --c-on-dark-rgb:246,241,231; --c-surface-rgb:243,238,228;
+  --c-photo-a:#B7A68A; --c-photo-b:#7F9483;
+  --c-confetti:#C8462C #2F5641 #D9A441 #211C18;
+
+  --f-sans:"PingFang SC","Hiragino Sans GB",sans-serif;
+  --f-display:"STSongti-SC-Black","Songti SC",serif;
+  --f-head:"STSongti-SC-Bold","Songti SC",serif;     /* 小标题 */
+  --f-body:"Songti SC","STSongti-SC-Regular",serif;  /* 导语、引文 */
+  --f-quote:"STKaitiSC-Regular","Kaiti SC",serif;
+  --f-num:"Didot","Bodoni 72",serif;
+  --f-latin:"Avenir Next","Helvetica Neue",sans-serif;
+  --f-serif:var(--f-body);
+
+  --t1:96px; --t2:72px; --t3:48px; --t4:36px; --t5:28px; --t6:23px; --t7:18px;
+}
+
+:root[data-theme="swiss"]{
+  --c-deep:#0E0E0E; --c-dark:#111111;
+  --c-primary:#111111; --c-primary-2:#000000; --c-primary-3:#333333; --c-primary-lt:#9A9A9A;
+  --c-accent:#2340F5; --c-accent-hi:#5C72FF; --c-accent-lo:#1529B8; --c-accent-ink:#1529B8;
+  --c-emph:#2340F5; --c-emph-lo:#1529B8;
+  --c-ink:#111111; --c-ink-2:#4A4A4A; --c-ink-3:#8C8C8C;
+  --c-on-dark:#FFFFFF; --c-surface:#FFFFFF; --c-bg-soft:#F4F4F4; --c-bg-pale:#EBEBEB; --c-tint:#F2F2F2;
+  --c-line:#D6D6D6; --c-line-soft:#ECECEC; --c-leader:#A0A0A0; --c-connector:#555555;
+  --c-dark-rgb:17,17,17; --c-accent-rgb:35,64,245; --c-emph-rgb:35,64,245; --c-on-dark-rgb:255,255,255; --c-surface-rgb:255,255,255;
+  --c-photo-a:#A9B0C6; --c-photo-b:#D3D7E0;
+  --c-confetti:#2340F5 #111111 #FF5A1F #9A9A9A;
+
+  --f-display:"FZLTTHK--GBK1-0","PingFang SC",sans-serif;
+  --f-head:"FZLTTHK--GBK1-0","PingFang SC",sans-serif;
+  --f-body:"PingFang SC",sans-serif;
+  --f-quote:"FZLTXHK--GBK1-0","PingFang SC",sans-serif;  /* 纤黑：和特黑形成粗细对比 */
+  --f-num:"Helvetica Neue","Avenir Next",sans-serif;
+}

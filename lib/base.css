@@ -1,0 +1,23 @@
+/* 所有分支共用的基础样式：重置、画布、照片位。
+ * 分支自己的 components.css 在它之后加载。 */
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#2a2a2a;font-family:var(--f-sans);color:var(--c-ink)}
+.slide{width:1920px;height:1080px;position:relative;overflow:hidden;margin:0 auto 40px;background:var(--c-surface)}
+.abs{position:absolute}
+svg{display:block}
+
+/* ---------- 照片位 ----------
+ * 用法：<div class="photo" data-label="班级合影"></div>
+ *       有真图时：<div class="photo"><img src="..."></div>，图片会盖住占位。
+ * 形状修饰：.m-arch 拱形、.m-circle 圆形、.m-round 大圆角；倾斜交给各分支。
+ * 占位色读 --c-photo-a / --c-photo-b，没定义时退回 line / tint。 */
+.photo{position:absolute;overflow:hidden;
+  background:
+    repeating-linear-gradient(135deg,rgba(255,255,255,.10) 0 2px,transparent 2px 14px),
+    linear-gradient(160deg,var(--c-photo-a,var(--c-line)),var(--c-photo-b,var(--c-tint)));}
+.photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.photo:not(:has(img))::after{content:"照片 · " attr(data-label);position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+  padding:8px 18px;border-radius:999px;background:rgba(0,0,0,.28);color:#fff;font:600 20px var(--f-sans);white-space:nowrap;letter-spacing:1px}
+.m-arch{border-radius:999px 999px 0 0}
+.m-circle{border-radius:50%}
+.m-round{border-radius:36px}

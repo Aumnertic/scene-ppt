@@ -1,0 +1,63 @@
+/* 风格分支：roadshow-cn（挑战杯 / 互联网+ 路演）
+ * 深海军蓝打底、金色点睛、书法标题。
+ *
+ * 变量契约（所有分支共用这些名字）：
+ * - 【必需】核心角色色、字体、字号。components.css 和 lib/shapes.js 的基础部分依赖它们。
+ * - 【按需】某个形状才用的变量，例如 --c-iso-ramp 只有 isoStack 用。分支不用那个形状就可以不定义。
+ *   缺少变量时，shapes.js 会在控制台报错，render.py 的检查会把它报出来。
+ * - 命名按「角色」而不是颜色：deep / dark 表示最重的两档，on-dark 表示重色面上的字。
+ *   浅色主题里 deep 也可以是深棕、墨绿，只要它是最重的一档就行。
+ */
+:root{
+  /* ==== 【必需】核心角色色 ==== */
+  --c-deep:#0B2341;        /* 最重一档：深色面、浅色块上的深字 */
+  --c-dark:#11355A;        /* 次重：标题字、表头 */
+  --c-primary:#2B6CB0;     /* 主色：结构图主体、数据主系列 */
+  --c-primary-2:#194A7A;   /* 主色深档 */
+  --c-primary-3:#215480;   /* 主色渐变中段 */
+  --c-primary-lt:#4F8FD9;  /* 主色浅档：对照系列 */
+  --c-accent:#DCBB6A;      /* 强调色：节点、关键数字、高亮步骤 */
+  --c-accent-hi:#F6DE97;
+  --c-accent-lo:#B08A35;
+  --c-accent-ink:#7A5A12;  /* 浅底上的强调色文字（保证对比度） */
+  --c-emph:#C8161D;        /* 极少量警示 / 本作品数据点 */
+  --c-emph-lo:#8E0F14;
+  --c-ink:#1B2B3F;
+  --c-ink-2:#4A5B70;
+  --c-ink-3:#6A7C90;       /* 坐标轴刻度、注释 */
+  --c-on-dark:#fff;        /* 重色面上的字和描边 */
+  --c-surface:#fff;        /* 卡片、面板底 */
+  --c-bg-soft:#F5FAFE;     /* 浅色页底渐变 */
+  --c-bg-pale:#EAF6FD;
+  --c-tint:#F3F8FD;        /* 浅色填充层 */
+  --c-line:#C9DAEC;        /* 网格、面板边框 */
+  --c-line-soft:#E1E9F2;
+  --c-leader:#8AA6C4;      /* 引线、虚线框 */
+  --c-connector:#4A6A8F;   /* 结构图连线、箭头 */
+  /* rgb 三元组：用于 rgba(var(--c-x-rgb), α) */
+  --c-dark-rgb:17,53,90;
+  --c-accent-rgb:220,187,106;
+  --c-emph-rgb:200,22,29;
+  --c-on-dark-rgb:255,255,255;
+  --c-surface-rgb:255,255,255;
+
+  /* ==== 【按需】形状专用 ==== */
+  --c-track:#D5E3F1;       /* ringGauges 底轨 */
+  --c-glow:#39a8ff;        /* meshWave */
+  --c-glow-2:#5fc8ff;      /* dataRain 线 */
+  --c-glow-3:#7fe0ff;      /* dataRain 点 */
+  --c-series:#AFC3D8 #4F8FD9 #C8161D;   /* groupedBars：空格分隔，最后一个是「本作品」 */
+  --c-iso-ramp:#E9C979 #B08A35 #8A6A25 / #5C9BE0 #2B6CB0 #1D4F86 / #3C79BE #1D4F86 #143A66 / #2A5F99 #143A66 #0D2848; /* isoStack：每层 亮 中 暗，用 / 分层 */
+
+  /* ==== 【必需】字体 ==== */
+  --f-sans:"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  --f-display:"Xingkai SC","STXingkai","华文行楷",serif;  /* 展示字体：封面大标题 */
+  --f-num:"DIN Alternate","Bahnschrift","DIN",var(--f-sans);
+  --f-serif:"Times New Roman","Songti SC",serif;
+  /* 本分支额外字体 */
+  --f-brush:var(--f-display);
+  --f-wei:"Weibei SC","Kaiti SC",serif;
+
+  /* ==== 【必需】字号层级 ==== */
+  --t1:64px; --t2:44px; --t3:34px; --t4:28px; --t5:24px; --t6:20px; --t7:17px;
+}

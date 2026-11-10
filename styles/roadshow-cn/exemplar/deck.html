@@ -1,0 +1,302 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>茶眸 · roadshow-cn 样板</title>
+<link rel="stylesheet" href="../tokens.css">
+<link rel="stylesheet" href="../components.css">
+<style>
+/* 本页专属样式。
+ * 颜色分三类：
+ * 1. 角色变量 --c-*（tokens.css）
+ * 2. 本页可调颜色 --pg-*（下面这块）：页面底色、色带等细分色阶，换主题时一起改
+ * 3. 题材插画（封面的茶叶、扫描环、远山，痛点页的线稿）：随项目替换，颜色不进主题，HTML 里已标注 */
+#p1{--pg-bg-1:#1f548c; --pg-bg-2:#0f2f55; --pg-bg-3:#071a30; --pg-band-1:#15457f; --pg-band-2:#1a56a0; --pg-band-rgb:18,62,120; --pg-info-label:#D9E5F2}
+#p2{--pg-bg-1:#0f2f55; --pg-bg-2:#13406f; --pg-bg-3:#0d2b4f; --pg-sub:#D6E2EF; --pg-body:#EAF1F8; --pg-rb-1:#1b5596; --pg-rb-2:#0c2a4e}
+/* ===== P1 封面 ===== */
+#p1{background:radial-gradient(ellipse 70% 60% at 50% 38%,var(--pg-bg-1) 0%,var(--pg-bg-2) 48%,var(--pg-bg-3) 100%)}
+#p1 .event{left:56px;top:40px;display:flex;align-items:center;gap:18px;font-size:34px;font-weight:800}
+#p1 .title{left:0;width:1920px;top:150px;height:360px;text-align:center;font:400 300px/1.1 var(--f-brush);letter-spacing:40px;filter:drop-shadow(0 6px 18px rgba(0,0,0,.55)) drop-shadow(0 0 30px rgba(246,222,151,.25)) /* 金色辉光 = accent-hi */}
+#p1 .band{left:120px;width:1680px;top:520px;height:104px;background:linear-gradient(90deg,rgba(var(--pg-band-rgb),.0),var(--pg-band-1) 12%,var(--pg-band-2) 50%,var(--pg-band-1) 88%,rgba(var(--pg-band-rgb),0));display:flex;align-items:center;justify-content:center;color:var(--c-on-dark);font-size:46px;font-weight:800;letter-spacing:3px}
+#p1 .band::before,#p1 .band::after{content:"";position:absolute;left:8%;right:8%;height:2px;background:linear-gradient(90deg,transparent,var(--c-accent),transparent)}
+#p1 .band::before{top:0}#p1 .band::after{bottom:0}
+#p1 .info{left:640px;top:690px;color:var(--c-on-dark);font-size:34px;font-weight:700;line-height:1.75}
+#p1 .info span{display:inline-block;width:170px;color:var(--pg-info-label)}
+#p1 .info em{font-style:normal;color:var(--c-accent);margin:0 18px}
+
+/* ===== P2 痛点 ===== */
+#p2{background:linear-gradient(180deg,var(--pg-bg-1) 0%,var(--pg-bg-2) 55%,var(--pg-bg-3) 100%)}
+#p2 .col{position:absolute;top:150px;width:580px;height:760px;padding:34px 40px 0}
+#p2 .col .scene{position:absolute;inset:0;opacity:.22}
+#p2 .col + .col{border-left:1px solid rgba(var(--c-on-dark-rgb),.12)}
+#p2 .k1{position:relative;color:var(--c-on-dark);font-size:var(--t2);font-weight:800}
+#p2 .k2{position:relative;font-size:100px;font-weight:900;line-height:1.15;letter-spacing:4px;filter:drop-shadow(0 4px 6px rgba(0,0,0,.4))}
+#p2 .k3{position:relative;color:var(--c-on-dark);font-size:40px;font-weight:800;text-align:right}
+#p2 .num{position:relative;margin:26px 0 22px;display:flex;align-items:flex-end;gap:16px;padding:16px 22px;background:linear-gradient(90deg,rgba(var(--c-accent-rgb),.18),rgba(var(--c-accent-rgb),0));border-left:6px solid var(--c-accent)}
+#p2 .num b{font:700 76px/1 var(--f-num);color:var(--c-accent-hi)}
+#p2 .num b small{font-size:36px;margin-left:4px}
+#p2 .num span{color:var(--pg-sub);font-size:var(--t6);line-height:1.35;padding-bottom:6px}
+#p2 ul{position:relative;color:var(--pg-body);font-size:27px}
+#p2 ul li+li{margin-top:10px}
+#p2 .ribbon{left:0;top:925px;width:1920px;height:155px}
+#p2 .ribbon-t{left:0;width:1920px;top:968px;text-align:center;color:var(--c-on-dark);font-size:40px;font-weight:800;letter-spacing:2px}
+
+
+/* ===== P3 核心技术 ===== */
+#p3{background:linear-gradient(160deg,var(--c-surface) 0%,var(--c-bg-soft) 40%,var(--c-bg-pale) 100%)}
+#p3 .lbl{font-size:var(--t6);font-weight:800;fill:var(--c-on-dark)}
+.chev-row{position:absolute;left:48px;top:900px;width:1824px;height:150px}
+
+/* ===== P4 成果 ===== */
+#p4{background:linear-gradient(180deg,var(--c-surface) 0%,var(--c-bg-pale) 100%)}
+</style>
+</head>
+<body>
+
+<!-- ======================= P1 封面 ======================= -->
+<section class="slide" id="p1">
+  <svg class="abs" id="p1-rain" width="1920" height="1080" style="left:0;top:0"></svg>
+  <svg class="abs" id="p1-mesh" width="1920" height="1080" style="left:0;top:0"></svg>
+  <!-- 【题材插画】远山、茶叶、扫描环、星芒：随项目替换，颜色不进主题 -->
+  <!-- 远山 -->
+  <svg class="abs" width="1920" height="1080" style="left:0;top:0">
+    <defs>
+      <linearGradient id="mt" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2a6aa8" stop-opacity=".55"/><stop offset="1" stop-color="#0b2341" stop-opacity="0"/></linearGradient>
+      <radialGradient id="glow" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#9fd8ff" stop-opacity=".9"/><stop offset=".3" stop-color="#4fb3ff" stop-opacity=".35"/><stop offset="1" stop-color="#4fb3ff" stop-opacity="0"/></radialGradient>
+      <linearGradient id="leafG" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#3fa86b"/><stop offset=".6" stop-color="#1f6b4a"/><stop offset="1" stop-color="#0f3d33"/></linearGradient>
+    </defs>
+    <path d="M0 640 C160 560 260 600 380 540 S600 470 720 560 S940 620 1080 520 S1340 470 1480 560 S1760 600 1920 520 L1920 820 L0 820Z" fill="url(#mt)"/>
+    <!-- 茶叶 + 扫描环 -->
+    <g transform="translate(1470 120) rotate(18)">
+      <path d="M0 0 C60 -70 190 -60 240 30 C170 70 70 80 0 0Z" fill="url(#leafG)" stroke="#F6DE97" stroke-width="3"/>
+      <path d="M0 0 C80 10 160 20 240 30" stroke="#F6DE97" stroke-width="2" fill="none" opacity=".9"/>
+      <path d="M60 8 L90 -30 M110 14 L145 -32 M160 20 L190 -18 M80 11 L110 40 M130 17 L160 48" stroke="#F6DE97" stroke-width="1.5" opacity=".7"/>
+      <circle cx="150" cy="-6" r="9" fill="#a5672a" opacity=".85"/><circle cx="170" cy="8" r="5" fill="#a5672a" opacity=".7"/>
+    </g>
+    <g transform="translate(1610 118)" fill="none" stroke="#7fdcff">
+      <circle r="62" stroke-width="2" opacity=".9"/><circle r="80" stroke-width="1" stroke-dasharray="6 8" opacity=".7"/>
+      <path d="M-100 0 H-66 M66 0 H100 M0 -100 V-66 M0 66 V100" stroke-width="3"/>
+      <circle r="120" fill="url(#glow)" stroke="none" opacity=".35"/>
+    </g>
+    <!-- 星芒 -->
+    <g transform="translate(1270 205)"><circle r="70" fill="url(#glow)"/><path d="M-90 0 L0 -4 L90 0 L0 4Z M0 -90 L4 0 L0 90 L-4 0Z" fill="#fff" opacity=".9"/></g>
+    <g transform="translate(520 330) scale(.6)"><circle r="70" fill="url(#glow)"/><path d="M-90 0 L0 -4 L90 0 L0 4Z M0 -90 L4 0 L0 90 L-4 0Z" fill="#fff" opacity=".9"/></g>
+  </svg>
+
+  <div class="abs event"><svg width="70" height="70" viewBox="0 0 70 70"><circle cx="35" cy="35" r="32" fill="none" style="stroke:var(--c-accent)" stroke-width="3"/><path d="M35 12 L41 30 L60 30 L45 41 L51 59 L35 48 L19 59 L25 41 L10 30 L29 30Z" style="fill:var(--c-accent)"/></svg><span class="gold-text">“挑战杯”全国大学生课外学术科技作品竞赛</span></div>
+  <div class="abs title gold-text">茶眸</div>
+  <div class="seal" style="left:1290px;top:330px"><span>科</span><span>技</span><span>发</span><span>明</span></div>
+  <div class="abs band fit">基于多光谱成像与轻量化网络的茶树病害早期识别系统</div>
+  <div class="abs info fit">
+    <div><span>作品类别</span><em>|</em>科技发明制作 · A 类</div>
+    <div><span>所属高校</span><em>|</em>××××大学</div>
+    <div><span>参赛团队</span><em>|</em>茶眸项目组</div>
+  </div>
+  <div class="bubble" style="left:150px;top:640px;width:150px;height:150px;font-size:26px">多光谱<br>16 波段</div>
+  <div class="bubble" style="left:330px;top:780px;width:110px;height:110px;font-size:22px">边缘<br>部署</div>
+  <div class="bubble" style="left:1500px;top:680px;width:190px;height:190px;font-size:30px">提前<br><span style="font:700 46px var(--f-num)">3.2</span> 天</div>
+  <div class="bubble" style="left:1380px;top:860px;width:120px;height:120px;font-size:22px">轻量<br>CNN</div>
+</section>
+
+<!-- ======================= P2 痛点 ======================= -->
+<section class="slide" id="p2">
+  <header class="bar"><div class="t"><svg width="70" height="56" viewBox="0 0 70 56"><path d="M0 0H18L42 28L18 56H0L24 28Z M28 0H46L70 28L46 56H28L52 28Z" style="fill:var(--c-on-dark)"/></svg>痛点分析</div>
+    <nav>研究背景<i>|</i><b>痛点分析</b><i>|</i>核心技术<i>|</i>实验验证<i>|</i>应用推广<i>|</i>团队</nav></header>
+  <svg class="abs" width="1920" height="1080" style="left:0;top:0;opacity:.10" id="p2-hex"></svg>
+
+  <div class="col" style="left:60px">
+    <!-- 【题材插画】线稿 --><svg class="scene" viewBox="0 0 580 760"><g fill="none" style="stroke:var(--c-on-dark)" stroke-width="3"><path d="M120 520 C200 380 400 380 470 520 C380 600 220 610 120 520Z"/><path d="M120 520 C250 515 360 515 470 520"/><circle cx="330" cy="500" r="18" style="fill:var(--c-on-dark)"/><circle cx="380" cy="530" r="10" style="fill:var(--c-on-dark)"/><circle cx="420" cy="420" r="120" stroke-width="10"/><path d="M505 505 L600 600" stroke-width="22"/></g></svg>
+    <div class="k1">人工巡园</div>
+    <div class="k2 gold-text">发现太晚</div>
+    <div class="k3">肉眼可见 = 已扩散</div>
+    <div class="num"><b>7–10<small>天</small></b><span>茶饼病、炭疽病<br>无症状潜伏期</span></div>
+    <ul class="ar fit" style="height:260px">
+      <li>病斑出现时菌丝已<span class="hl">侵入叶肉</span>，喷药只能控制不能逆转</li>
+      <li>巡园依赖经验，<span class="hl">一人一天</span>仅能覆盖约 30 亩</li>
+      <li>山地茶园坡陡，边角地块<span class="hl">长期漏检</span></li>
+    </ul>
+  </div>
+
+  <div class="col" style="left:670px">
+    <!-- 【题材插画】线稿 --><svg class="scene" viewBox="0 0 580 760"><g fill="none" style="stroke:var(--c-on-dark)" stroke-width="3"><rect x="110" y="330" width="360" height="250" rx="16"/><circle cx="290" cy="455" r="80" stroke-width="8"/><circle cx="290" cy="455" r="40"/><rect x="380" y="300" width="60" height="30"/><path d="M60 650 H520" stroke-dasharray="14 10"/></g></svg>
+    <div class="k1">现有检测</div>
+    <div class="k2 gold-text">用不起来</div>
+    <div class="k3">设备贵 · 算力重</div>
+    <div class="num"><b>¥18<small>万</small></b><span>商用高光谱设备<br>单台采购价</span></div>
+    <ul class="ar fit" style="height:260px">
+      <li>高光谱仪体积大，需<span class="hl">实验室环境</span>，无法下田</li>
+      <li>主流识别模型参数量<span class="hl">超过 2000 万</span>，依赖云端</li>
+      <li>山区茶园<span class="hl">网络覆盖差</span>，云端方案时延高</li>
+    </ul>
+  </div>
+
+  <div class="col" style="left:1280px">
+    <!-- 【题材插画】线稿 --><svg class="scene" viewBox="0 0 580 760"><g fill="none" style="stroke:var(--c-on-dark)" stroke-width="3"><path d="M140 600 V420 L200 380 H330 L360 420 V600Z"/><path d="M360 470 H470 L520 430"/><path d="M520 430 L560 450 M520 430 L555 405 M520 430 L565 430" stroke-dasharray="6 6"/><circle cx="200" cy="620" r="30"/><circle cx="320" cy="620" r="30"/></g></svg>
+    <div class="k1">农户用药</div>
+    <div class="k2 gold-text">全园漫喷</div>
+    <div class="k3">不知病在哪</div>
+    <div class="num"><b>40<small>%</small></b><span>估算可减少的<br>无效农药用量</span></div>
+    <ul class="ar fit" style="height:260px">
+      <li>缺少病害<span class="hl">空间分布图</span>，只能整片喷洒</li>
+      <li>农残超标直接影响<span class="hl">出口茶</span>检测通过率</li>
+      <li>用药记录分散，难以支撑<span class="hl">绿色认证</span>追溯</li>
+    </ul>
+  </div>
+
+  <svg class="abs ribbon" viewBox="0 0 1920 155" preserveAspectRatio="none">
+    <defs><linearGradient id="rb" x1="0" y1="0" x2="0" y2="1"><stop offset="0" style="stop-color:var(--pg-rb-1)"/><stop offset="1" style="stop-color:var(--pg-rb-2)"/></linearGradient>
+      <linearGradient id="rbg" x1="0" x2="1"><stop offset="0" style="stop-color:var(--c-accent-lo)"/><stop offset=".5" style="stop-color:var(--c-accent-hi)"/><stop offset="1" style="stop-color:var(--c-accent-lo)"/></linearGradient></defs>
+    <path d="M0 40 C300 10 600 30 960 22 C1320 14 1620 34 1920 8 L1920 155 L0 155Z" fill="url(#rb)"/>
+    <path d="M0 40 C300 10 600 30 960 22 C1320 14 1620 34 1920 8" fill="none" stroke="url(#rbg)" stroke-width="5"/>
+    <path d="M0 52 C300 22 600 42 960 34 C1320 26 1620 46 1920 20" fill="none" stroke="url(#rbg)" stroke-width="1.5" opacity=".7"/>
+  </svg>
+  <div class="abs ribbon-t fit">核心矛盾：<span class="gold-text">症状出现之前</span>是唯一能止损的窗口，现有手段都看不见它</div>
+  <div class="pg lt">02</div>
+</section>
+
+<!-- ======================= P3 核心技术 ======================= -->
+<section class="slide light" id="p3">
+  <header class="bar"><div class="t"><svg width="70" height="56" viewBox="0 0 70 56"><path d="M0 0H18L42 28L18 56H0L24 28Z M28 0H46L70 28L46 56H28L52 28Z" style="fill:var(--c-on-dark)"/></svg>核心技术</div>
+    <nav>研究背景<i>|</i>痛点分析<i>|</i><b>核心技术</b><i>|</i>实验验证<i>|</i>应用推广<i>|</i>团队</nav></header>
+  <!-- 回纹水印 -->
+  <svg class="abs" width="900" height="900" style="right:-260px;top:120px;opacity:.06" viewBox="0 0 200 200"><g fill="none" style="stroke:var(--c-dark)" stroke-width="3"><circle cx="100" cy="100" r="96"/><circle cx="100" cy="100" r="80"/><path id="hw" d="M100 30 h20 v20 h-20 v-10 h10"/></g></svg>
+
+  <!-- 左：系统架构 -->
+  <div class="abs" style="left:52px;top:146px"><span class="capsule">四层系统架构</span></div>
+  <svg class="abs" id="iso" width="720" height="690" style="left:30px;top:206px"></svg>
+
+  <!-- 中：网络结构 -->
+  <div class="abs" style="left:760px;top:150px"><span class="italic-tag">光谱-空间双分支网络 SS-LiteNet</span></div>
+  <div class="dash-box" style="left:760px;top:206px;width:600px;height:670px"></div>
+  <svg class="abs" id="net" width="600" height="470" style="left:760px;top:214px"></svg>
+  <div class="abs" style="left:780px;top:690px;width:560px">
+    <div class="formula fit">A = σ( W<sub>a</sub> · [ F<sub>spec</sub> ⊕ F<sub>spat</sub> ] + b )</div>
+    <div class="formula fit" style="margin-top:8px;font-size:26px">ℒ = ℒ<sub>CE</sub> + λ · KL( p<sub>T</sub> ‖ p<sub>S</sub> )</div>
+    <div class="fit" style="margin-top:14px;font-size:20px;line-height:1.5;color:var(--c-ink-2)">注意力融合两路特征；教师网络 ResNet-50 蒸馏到学生网络，参数量压到 <span class="hl-d">1.9 M</span></div>
+  </div>
+
+  <!-- 右：创新点 -->
+  <div class="abs" style="left:1400px;top:146px"><span class="capsule">三项创新</span></div>
+  <div class="abs fit" style="left:1400px;top:226px;width:470px;height:520px">
+    <div class="innov"><div class="hex">01</div><div><h4>早于肉眼的光谱信号</h4><p>病菌侵染改变叶绿素与含水量，<span class="hl-d">720 nm 红边</span>位移比病斑早 3 天以上出现</p></div></div>
+    <div class="innov"><div class="hex">02</div><div><h4>16 波段低成本成像</h4><p>滤光片阵列替代分光仪，整机成本降到<span class="hl-d">商用设备的 1/20</span></p></div></div>
+    <div class="innov"><div class="hex">03</div><div><h4>端侧实时推理</h4><p>知识蒸馏 + INT8 量化，Jetson Orin Nano 上<span class="hl-d">单帧 38 ms</span>，离线可用</p></div></div>
+  </div>
+  <!-- 右下：小指标环 -->
+  <svg class="abs" id="rings" width="480" height="150" style="left:1395px;top:740px"></svg>
+
+  <!-- 底：流程箭头 -->
+  <svg class="chev-row" id="chev" viewBox="0 0 1824 150"></svg>
+  <div class="pg">03</div>
+</section>
+
+<!-- ======================= P4 实验成果 ======================= -->
+<section class="slide light" id="p4">
+  <header class="bar"><div class="t"><svg width="70" height="56" viewBox="0 0 70 56"><path d="M0 0H18L42 28L18 56H0L24 28Z M28 0H46L70 28L46 56H28L52 28Z" style="fill:var(--c-on-dark)"/></svg>实验验证</div>
+    <nav>研究背景<i>|</i>痛点分析<i>|</i>核心技术<i>|</i><b>实验验证</b><i>|</i>应用推广<i>|</i>团队</nav></header>
+
+  <div class="kpi" style="left:52px;background:linear-gradient(135deg,var(--c-emph),var(--c-emph-lo))"><h5>识别准确率</h5><div class="v">96.4<small>%</small></div><div class="d">5 类病害 · 测试集<br>12,800 张</div>
+    <svg class="up" width="90" height="90" viewBox="0 0 90 90"><path d="M8 80 C30 70 50 50 62 22 L50 22 L74 2 L88 30 L74 24 C62 56 40 76 8 86Z" style="fill:var(--c-on-dark)" opacity=".9"/></svg></div>
+  <div class="kpi" style="left:492px;background:linear-gradient(135deg,var(--c-primary-lt),var(--c-primary))"><h5>平均提前预警</h5><div class="v">3.2<small>天</small></div><div class="d">对比人工巡园<br>首次发现时间</div>
+    <svg class="up" width="90" height="90" viewBox="0 0 90 90"><path d="M8 80 C30 70 50 50 62 22 L50 22 L74 2 L88 30 L74 24 C62 56 40 76 8 86Z" style="fill:var(--c-on-dark)" opacity=".9"/></svg></div>
+  <div class="kpi" style="left:932px;background:linear-gradient(135deg,var(--c-primary-2),var(--c-deep))"><h5>单帧推理时延</h5><div class="v">38<small>ms</small></div><div class="d">Jetson Orin Nano<br>INT8 量化</div>
+    <svg class="up" width="90" height="90" viewBox="0 0 90 90" style="transform:scaleY(-1)"><path d="M8 80 C30 70 50 50 62 22 L50 22 L74 2 L88 30 L74 24 C62 56 40 76 8 86Z" style="fill:var(--c-accent)" opacity=".95"/></svg></div>
+
+  <!-- 右上：对比表 -->
+  <div class="panel" style="left:1380px;top:146px;width:490px;height:420px">
+    <div class="ph">主流模型对比</div>
+    <table class="cmp">
+      <tr><th>模型</th><th>准确率</th><th>参数量</th><th>时延</th></tr>
+      <tr><td>ResNet-50</td><td>95.1%</td><td>25.6M</td><td>210ms</td></tr>
+      <tr><td>ViT-S/16</td><td>95.8%</td><td>22.0M</td><td>340ms</td></tr>
+      <tr><td>MobileNetV3</td><td>91.2%</td><td>5.4M</td><td>45ms</td></tr>
+      <tr><td>EfficientNet-B0</td><td>93.0%</td><td>5.3M</td><td>61ms</td></tr>
+      <tr class="ours"><td>SS-LiteNet（本作品）</td><td>96.4%</td><td>1.9M</td><td>38ms</td></tr>
+    </table>
+    <div style="padding:10px 18px 0;font-size:16px;color:var(--c-ink-2)">注：时延均在同一端侧设备上测得</div>
+  </div>
+
+  <!-- 左下：柱线图 -->
+  <div class="panel" style="left:52px;top:380px;width:880px;height:500px">
+    <div class="ph">各病害早期识别率（侵染后第 2 天）</div>
+    <svg id="bars" width="880" height="448"></svg>
+  </div>
+  <!-- 中下：雷达 -->
+  <div class="panel" style="left:952px;top:380px;width:410px;height:500px">
+    <div class="ph">综合能力对比</div>
+    <svg id="radar" width="410" height="448"></svg>
+  </div>
+  <!-- 右下：成果墙 -->
+  <div class="side-tab" style="left:1380px;top:586px;height:294px">阶段成果</div>
+  <div class="panel" style="left:1452px;top:586px;width:418px;height:294px;background:linear-gradient(180deg,var(--c-surface),var(--c-tint))">
+    <div class="doc" style="left:22px;top:26px"><b>发明专利</b><i style="top:48px"></i><i style="top:62px"></i><i style="top:76px;right:40px"></i><i style="top:90px"></i><div class="st">受理</div></div>
+    <div class="doc" style="left:150px;top:26px"><b>软件著作权</b><i style="top:48px"></i><i style="top:62px"></i><i style="top:76px;right:40px"></i><i style="top:90px"></i><div class="st">登记</div></div>
+    <div class="doc" style="left:278px;top:26px"><b>学术论文</b><i style="top:48px"></i><i style="top:62px"></i><i style="top:76px;right:40px"></i><i style="top:90px"></i><div class="st">录用</div></div>
+    <div class="doc-cap" style="left:6px;top:196px">1 项<br><span style="font-weight:400;color:var(--c-ink-2)">已受理</span></div>
+    <div class="doc-cap" style="left:134px;top:196px">2 项<br><span style="font-weight:400;color:var(--c-ink-2)">已登记</span></div>
+    <div class="doc-cap" style="left:262px;top:196px">1 篇<br><span style="font-weight:400;color:var(--c-ink-2)">EI 会议</span></div>
+  </div>
+
+  <!-- 底部结论条 -->
+  <svg class="abs" width="1820" height="120" style="left:50px;top:910px" viewBox="0 0 1820 120">
+    <defs><linearGradient id="cb" x1="0" x2="1"><stop offset="0" style="stop-color:var(--c-deep)"/><stop offset="1" style="stop-color:var(--c-primary-3)"/></linearGradient></defs>
+    <path d="M0 10 H1760 L1810 60 L1760 110 H0 L40 60Z" fill="url(#cb)"/>
+    <path d="M60 10 H1740 M60 110 H1740" style="stroke:var(--c-accent)" stroke-width="2"/>
+  </svg>
+  <div class="abs fit" style="left:120px;top:942px;width:1660px;color:var(--c-on-dark);font-size:34px;font-weight:800;text-align:center">参数量只有 ResNet-50 的 <span class="gold-text">1/13</span>，准确率反而高出 <span class="gold-text">1.3 个百分点</span></div>
+  <div class="pg">04</div>
+</section>
+
+<script src="../../../lib/shapes.js"></script>
+<script>
+const S = Shapes;
+S.dataRain(document.getElementById('p1-rain'));
+S.meshWave(document.getElementById('p1-mesh'));
+S.hexGrid(document.getElementById('p2-hex'));
+S.isoStack(document.getElementById('iso'), {
+  layers: [
+    {name:'应用层', items:['病害热力图','预警小程序','用药记录追溯']},
+    {name:'模型层', items:['SS-LiteNet','知识蒸馏','INT8 量化']},
+    {name:'边缘层', items:['Jetson 端侧推理','断网缓存','4G 回传']},
+    {name:'感知层', items:['16 波段相机','巡检无人机','固定监测杆']},
+  ],
+  flowNote: '数据自下而上 · 指令自上而下',
+});
+S.ringGauges(document.getElementById('rings'), {items:[['参数量','1.9M',.08],['功耗','7W',.3],['整机成本','¥8.6k',.05]]}, {hl:2});
+S.chevronFlow(document.getElementById('chev'), {steps:[['采集','无人机 + 固定杆定时拍摄'],['校正','白板辐射校正 · 配准'],['推理','端侧识别 · 定位病斑'],['预警','热力图推送到农户手机'],['处置','精准施药 · 记录上链']]}, {hl:2});
+S.groupedBars(document.getElementById('bars'), {
+  cats:['茶饼病','炭疽病','云纹叶枯','轮斑病','白星病'],
+  series:[{n:'人工目检',v:[12,18,25,15,20]},{n:'MobileNetV3',v:[61,58,66,55,63]},{n:'本作品',v:[89,86,92,84,90]}],
+  avg: 88.2,
+});
+S.radar(document.getElementById('radar'), {
+  axes:['准确率','速度','轻量化','早期检出','鲁棒性','成本'],
+  series:[{n:'ResNet-50',v:[.78,.55,.45,.5,.7,.35]},{n:'本作品',v:[.96,.9,.95,.92,.82,.9]}],
+});
+
+/* P3 网络结构图（输入立方体的 hsl 色是光谱示意，属于题材插画）：这张是本项目专属的图，不进形状库；颜色同样读主题变量 */
+(function(){const s=document.getElementById('net');const {el,T,font}=S;const F=font('sans');
+  const box=(x,y,w,h,t,fill,col=T('on-dark'),fs=18)=>{el('rect',{x,y,width:w,height:h,rx:8,fill,stroke:'none'},s);t.split('\n').forEach((line,k,a)=>el('text',{x:x+w/2,y:y+h/2+6+(k-(a.length-1)/2)*22,'text-anchor':'middle','font-size':fs,'font-weight':700,fill:col,'font-family':F},s,line))};
+  const C=T('connector');
+  const arr=(d)=>{el('path',{d,fill:'none',stroke:C,'stroke-width':2.5},s)};
+  const head=(x,y,dir)=>{const p=dir==='r'?`M${x-10} ${y-7} L${x} ${y} L${x-10} ${y+7}Z`:`M${x-7} ${y-10} L${x} ${y} L${x+7} ${y-10}Z`;el('path',{d:p,fill:C},s)};
+  for(let k=5;k>=0;k--){const o=k*9;el('rect',{x:30+o,y:170-o,width:96,height:96,fill:`hsl(${200+k*18},70%,${45+k*5}%)`,stroke:T('on-dark'),'stroke-width':1.5,opacity:.95},s)}
+  el('text',{x:105,y:300,'text-anchor':'middle','font-size':17,'font-weight':700,fill:T('ink'),'font-family':F},s,'输入 16×224×224');
+  el('text',{x:105,y:322,'text-anchor':'middle','font-size':15,fill:T('ink-2'),'font-family':F},s,'400–1000 nm');
+  arr('M180 190 C210 190 210 110 240 110');head(244,110,'r');
+  arr('M180 240 C210 240 210 330 240 330');head(244,330,'r');
+  box(248,80,150,60,'光谱分支\n1D-Conv × 3',T('primary'));
+  box(248,300,150,60,'空间分支\nDW-Conv × 4',T('primary-2'));
+  arr('M398 110 C430 110 430 200 452 210');arr('M398 330 C430 330 430 240 452 230');
+  el('circle',{cx:475,cy:220,r:26,fill:T('accent')},s);el('text',{x:475,y:229,'text-anchor':'middle','font-size':26,'font-weight':800,fill:T('deep')},s,'⊕');
+  el('text',{x:475,y:274,'text-anchor':'middle','font-size':16,'font-weight':700,fill:T('accent-ink'),'font-family':F},s,'注意力融合');
+  arr('M501 220 L530 220');head(536,220,'r');
+  box(538,170,52,100,'分\n类',T('emph'),T('on-dark'),20);
+  el('rect',{x:248,y:395,width:340,height:56,rx:8,fill:'none',stroke:T('accent-lo'),'stroke-width':2,'stroke-dasharray':'7 5'},s);
+  el('text',{x:418,y:430,'text-anchor':'middle','font-size':18,'font-weight':700,fill:T('accent-ink'),'font-family':F},s,'教师 ResNet-50 → 软标签蒸馏');
+  arr('M564 395 L564 276');head(564,272,'u');
+  s.querySelector('path:last-child').setAttribute('transform','rotate(180 564 272)');
+})();
+</script>
+</body>
+</html>

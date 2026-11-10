@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>注意力的曲线 · curve-minimal 样板</title>
+<script>{const t=new URLSearchParams(location.search).get('theme');if(t)document.documentElement.dataset.theme=t}</script>
+<link rel="stylesheet" href="../tokens.css">
+<link rel="stylesheet" href="../../../lib/base.css">
+<link rel="stylesheet" href="../components.css">
+<style>
+/* 本页专属：只放坐标和尺寸，颜色全部来自 tokens / components */
+#b1 .k{left:120px;top:120px}
+#b1 .t{left:108px;top:224px;font-size:var(--t1)}
+#b1 .sub{left:120px;top:448px;font:400 32px var(--f-body);color:var(--c-ink-2);letter-spacing:2px}
+#b1 .meta{left:120px;top:590px}
+#b1 .coord{font:400 15px var(--f-num);letter-spacing:1px;color:var(--c-ink-3)}
+#b1 .en{right:120px;bottom:64px;font:500 15px var(--f-latin);letter-spacing:8px;color:var(--c-ink-3)}
+
+#b2 .k{left:120px;top:150px}
+#b2 .t{left:116px;top:186px;font-size:var(--t2)}
+
+#b3 .k{left:120px;top:150px}
+#b3 .big{left:100px;top:380px;font-size:380px;font-family:var(--f-num-display)}
+#b3 .big small{font:400 80px var(--f-display);letter-spacing:0;margin-left:16px;color:var(--c-ink)}
+#b3 .stmt{left:120px;top:770px;width:960px;font:400 34px/1.6 var(--f-body);color:var(--c-ink)}
+#b3 .src{left:120px;top:920px}
+#b3 .loopnote{left:1200px;top:840px;width:560px}
+
+#b4 .k{left:120px;top:130px}
+#b4 .t{left:120px;top:166px;width:1100px}
+#b4 .callout{left:1048px;top:236px;width:420px}
+#b4 .src{left:120px;top:990px}
+
+#b5 .k{left:120px;top:130px}
+#b5 .t{left:120px;top:166px;width:1100px}
+#b5 .colh{top:280px}
+#b5 .hinote{left:576px;top:960px;width:760px}
+#b5 .src{right:120px;top:990px;text-align:right}
+
+#b6 .k{left:120px;top:130px}
+#b6 .t{left:120px;top:166px}
+#b6 .concl{left:120px;top:300px;width:820px}
+#b6 .thx{left:1096px;top:300px;font-size:180px}
+#b6 .ask{left:1110px;top:530px;font:400 30px var(--f-head);color:var(--c-ink-2);letter-spacing:6px}
+#b6 .src{right:120px;top:990px;text-align:right}
+</style>
+</head>
+<body>
+
+<!-- ======================= 封面：曲线是主形，一个舒展的长弧 + 一个收紧的波峰 ======================= -->
+<section class="slide" id="b1">
+  <svg class="layer" id="b1-c" width="1920" height="1080"></svg>
+  <div class="abs label k">课题分享 · 2026 秋季学期</div>
+  <div class="abs display t">注意力的曲线</div>
+  <div class="abs sub">短视频时代，大学生专注时长的一次小型调查</div>
+  <div class="abs meta">
+    <div><span>汇报人</span><b>第 3 组 · 林　禾</b></div>
+    <div><span>课程</span><b>认知心理学导论</b></div>
+    <div><span>日期</span><b>2026.11.24</b></div>
+  </div>
+  <div class="abs coord" id="b1-coord"></div>
+  <div class="abs en">THE CURVE OF ATTENTION</div>
+</section>
+
+<!-- ======================= 目录：曲线是路径，章节是路径上的锚点 ======================= -->
+<section class="slide" id="b2">
+  <svg class="layer" id="b2-c" width="1920" height="1080"></svg>
+  <div class="runhead"><span>注意力的曲线</span><span class="pg">02 <i>/ 06</i></span></div>
+  <div class="abs label k">目录</div>
+  <div class="abs display t">四段路</div>
+  <div class="stop fit" id="s1"><div class="n">01</div><h3>为什么关心注意力</h3><p>一节课 45 分钟，真正听进去的有多少。</p></div>
+  <div class="stop fit" id="s2"><div class="n">02</div><h3>我们怎么测</h3><p>126 人自报日志，加 12 节课堂观察。</p></div>
+  <div class="stop on fit" id="s3"><div class="n">03</div><h3>发现：47 秒</h3><p>专注被打断得比想象中更频繁。</p></div>
+  <div class="stop fit" id="s4"><div class="n">04</div><h3>能做点什么</h3><p>三条不用意志力的小改动。</p></div>
+</section>
+
+<!-- ======================= 关键数字：曲线在右侧打一个环，表示「分心的绕路」 ======================= -->
+<section class="slide" id="b3">
+  <svg class="layer" id="b3-c" width="1920" height="1080"></svg>
+  <div class="runhead"><span>注意力的曲线</span><span class="pg">03 <i>/ 06</i></span></div>
+  <div class="abs label k"><b>03</b>关键数字</div>
+  <div class="abs num big">47<small>秒</small></div>
+  <p class="abs stmt fit">是大学生在一项学习任务上、不被打断的专注时长中位数。</p>
+  <div class="abs note src">样例数据：126 名本科生一周屏幕使用日志，仅用于演示版式</div>
+  <div class="abs callout loopnote"><div class="k"><b>一次分心的绕路</b>被消息打断后，平均要 9 分 30 秒才真正回到原来的任务。</div></div>
+</section>
+
+<!-- ======================= 数据：贯穿线本身就是数据折线 ======================= -->
+<section class="slide" id="b4">
+  <svg class="layer" id="b4-f" width="1920" height="1080"></svg>
+  <svg class="layer" id="b4-c" width="1920" height="1080"></svg>
+  <div class="runhead"><span>注意力的曲线</span><span class="pg">04 <i>/ 06</i></span></div>
+  <div class="abs label k"><b>03</b>课堂观察</div>
+  <div class="abs h t">一节 45 分钟的课，注意力怎样流走</div>
+  <div class="abs callout"><div class="v">+18</div><div class="k"><b>第 25 分钟 · 课堂提问</b>一次互动，把注意力拉回 18 个百分点。</div></div>
+  <div id="b4-axis"></div>
+  <div class="abs note src">纵轴：观察到「抬头、记笔记」的学生比例。样例数据，12 节课的平均，仅用于演示版式</div>
+</section>
+
+<!-- ======================= 流向：贯穿线就是被强调的那一股流（左上 → 右下，横跨全图的 S） ======================= -->
+<section class="slide" id="b5">
+  <svg class="layer" id="b5-f" width="1920" height="1080"></svg>
+  <svg class="layer" id="b5-s" width="1920" height="1080"></svg>
+  <svg class="layer" id="b5-c" width="1920" height="1080"></svg>
+  <div class="runhead"><span>注意力的曲线</span><span class="pg">05 <i>/ 06</i></span></div>
+  <div class="abs label k"><b>03</b>屏幕时间</div>
+  <div class="abs h t">每天 6.2 小时屏幕时间，流向了哪里</div>
+  <div id="b5-lab"></div>
+  <div class="abs body hinote fit"><span class="acc">睡前 → 短视频</span>：1.1 小时，占全天屏幕时间的 18%，是最粗的一股。</div>
+  <div class="abs note src">单位：小时 / 天。样例数据，仅用于演示版式</div>
+</section>
+
+<!-- ======================= 结论 + 致谢：线在这里收住，留一段虚线柄指向下一步 ======================= -->
+<section class="slide" id="b6">
+  <svg class="layer" id="b6-c" width="1920" height="1080"></svg>
+  <div class="runhead"><span>注意力的曲线</span><span class="pg">06 <i>/ 06</i></span></div>
+  <div class="abs label k"><b>04</b>能做点什么</div>
+  <div class="abs h t">三条不用意志力的小改动</div>
+  <ol class="abs concl fit">
+    <li><span class="n">01</span><div><h3>把任务切成 25 分钟</h3><p>和注意力自然回落的节奏对齐，中间留一次小互动。</p></div></li>
+    <li><span class="n">02</span><div><h3>让手机离开视线</h3><p>放进包里比扣在桌上，专注时长多 1.6 倍。</p></div></li>
+    <li><span class="n">03</span><div><h3>睡前一小时不刷</h3><p>睡前是短视频最集中的时段，也最挤占睡眠。</p></div></li>
+  </ol>
+  <div class="abs display thx">谢谢</div>
+  <div class="abs ask">欢迎提问与指正</div>
+  <div class="abs note src">本样板所有数据均为虚构</div>
+</section>
+
+<script src="../../../lib/shapes.js"></script>
+<script>
+const S = Shapes, $ = (id) => document.getElementById(id);
+const NIB = getComputedStyle(document.documentElement).getPropertyValue('--k-curve').trim() === 'nib';
+
+/* 贯穿线的画法随主题切换：pen 等宽细线 + 锚点控制柄；ribbon 宽笔尖书法线 + 下方色面 */
+const lineOpt = () => NIB ? {mode:'nib', min:3.5, max:15, angle:40, stroke:S.T('ink')} : {mode:'line', width:2.5, stroke:S.T('ink')};
+function thread(svg, anchors, o = {}) {
+  if (NIB && o.field !== false) S.bezierThread(o.fieldSvg ?? svg, {anchors}, {field:S.T('bg-soft'), only:'field'});
+  return S.bezierThread(svg, {anchors}, {...lineOpt(), only:'line'});
+}
+function marks(svg, anchors, which) {
+  if (NIB) S.bezierHandles(svg, {anchors, which}, {shape:'dot', handles:false, size:18, ring:5, color:S.T('accent')});
+  else S.bezierHandles(svg, {anchors, which}, {shape:'square', size:16, handles:false});
+}
+const edgeIn = (y, o) => ({x:0, y, a:0, o}), edgeOut = (y, i) => ({x:1920, y, a:0, i});
+
+/* ---------- 先排流向图：第 4、5、6 页的交界高度由它决定 ---------- */
+const FLOW = {
+  left:  [{n:'睡前', v:2.2}, {n:'课堂', v:1.1}, {n:'自习', v:1.6}, {n:'课间与通勤', v:1.3}],
+  right: [{n:'学习资料', v:1.9}, {n:'社交聊天', v:1.4}, {n:'游戏与其他', v:0.8}, {n:'短视频', v:2.1}],
+  links: [
+    {s:0,t:0,v:.3},{s:0,t:1,v:.3},{s:0,t:2,v:.5},{s:0,t:3,v:1.1,hi:1},
+    {s:1,t:0,v:.6},{s:1,t:1,v:.3},{s:1,t:3,v:.2},
+    {s:2,t:0,v:1.0},{s:2,t:1,v:.3},{s:2,t:3,v:.3},
+    {s:3,t:1,v:.5},{s:3,t:2,v:.3},{s:3,t:3,v:.5}],
+};
+const F = S.flowRibbons($('b5-s'), FLOW, {x0:560, x1:1352, y0:330, y1:900, gap:26, bar:8,
+  fill:S.T('flow'), opacity:NIB ? .13 : .08, hiFill:S.T('accent'), hiOpacity:NIB ? 1 : .3, barFill:S.T('ink')});
+const hi = F.links.find((l) => l.hi), Y45 = hi.ys + hi.h / 2, Y56 = hi.yt + hi.h / 2;
+const Y12 = 600, Y23 = 240, Y34 = 300;
+
+/* ---------- 01 封面 ---------- */
+(function(){
+  const s = $('b1-c');
+  const A = [edgeIn(860, 520), {x:1150, y:780, a:-52, i:250, o:170}, {x:1500, y:330, a:0, i:150, o:105}, edgeOut(Y12, 250)];
+  thread(s, A);
+  if (NIB) marks(s, A, [2]); else S.bezierHandles(s, {anchors:A, which:[1, 2]}, {shape:'square', size:16});
+  if (!NIB) { const c = $('b1-coord'); c.textContent = 'x 1500   y 330'; c.style.left = '1530px'; c.style.top = '268px'; }
+})();
+
+/* ---------- 02 目录：站点 = 锚点 ---------- */
+(function(){
+  const s = $('b2-c');
+  const P = [[300,580],[720,530],[1140,600],[1560,520]];
+  const A = [edgeIn(Y12, 110), {x:300, y:580, a:-4, i:110, o:150}, {x:720, y:530, a:0, i:150, o:150},
+             {x:1140, y:600, a:0, i:150, o:150}, {x:1560, y:520, a:-6, i:150, o:150}, edgeOut(Y23, 170)];
+  thread(s, A);
+  if (!NIB) S.bezierHandles(s, {anchors:A, which:[3]}, {shape:'square', size:16});
+  marks(s, A, NIB ? [1,2,3,4] : [1,2,4]);  // pen：只有当前章节 03 露出控制柄
+  P.forEach(([x, y], i) => { const e = $('s' + (i + 1)); e.style.left = (x - 10) + 'px'; e.style.top = (y + 48) + 'px'; });
+})();
+
+/* ---------- 03 关键数字：线在右侧打一个环 ---------- */
+(function(){
+  const s = $('b3-c');
+  const A = [edgeIn(Y23, 520), {x:1180, y:300, a:24, i:420, o:220}, {x:1520, y:640, a:90, i:150, o:110},
+             {x:1400, y:780, a:180, i:80, o:80}, {x:1280, y:650, a:-90, i:80, o:130}, {x:1640, y:400, a:-14, i:190, o:120}, edgeOut(Y34, 120)];
+  thread(s, A);
+  marks(s, A, NIB ? [3] : [3]);
+  if (!NIB) S.bezierHandles(s, {anchors:A, which:[3]}, {shape:'square', size:16});
+})();
+
+/* ---------- 04 数据：贯穿线经过每个数据点（单调插值，不冲出数据范围） ---------- */
+(function(){
+  const s = $('b4-c'), x0 = 160, x1 = 1640, yb = 860, yt = 300;
+  const D = [[0,92],[5,85],[10,70],[15,58],[20,50],[25,68],[30,55],[35,45],[40,40],[45,52]];
+  const X = (m) => x0 + (m / 45) * (x1 - x0), Y = (v) => yb - (v / 100) * (yb - yt);
+  // 坐标轴：一条底线 + 三条极淡的参考线
+  [25, 50, 75].forEach((v) => S.el('line', {x1:x0, y1:Y(v), x2:x1, y2:Y(v), stroke:S.T('line'), 'stroke-width':1, 'stroke-dasharray':'2 8'}, s));
+  S.el('line', {x1:x0, y1:yb, x2:x1, y2:yb, stroke:S.T('ink-3'), 'stroke-width':1}, s);
+  const ax = $('b4-axis');
+  D.forEach(([m]) => ax.insertAdjacentHTML('beforeend', `<div class="abs axis" style="left:${X(m) - 30}px;top:${yb + 16}px;width:60px;text-align:center">${m}′</div>`));
+  [25, 50, 75].forEach((v) => ax.insertAdjacentHTML('beforeend', `<div class="abs axis" style="left:${x0 - 76}px;top:${Y(v) - 11}px;width:60px;text-align:right">${v}%</div>`));
+  const M = S.monotoneAnchors(D.map(([m, v]) => [X(m), Y(v)]));
+  M[0].i = 60; M.at(-1).a = 0; M.at(-1).o = 90;  // 末点切线放平，避免出页前冲出一个假波峰
+  const A = [edgeIn(Y34, 60), ...M, edgeOut(Y45, 120)];
+  thread(s, A, {fieldSvg:$('b4-f')});
+  M.forEach((p, i) => i !== 5 && S.el('circle', {cx:p.x, cy:p.y, r:5, fill:S.T('surface'), stroke:S.T('ink'), 'stroke-width':2}, s));
+  // 拐点：唯一显示控制柄的地方
+  const k = M[5];
+  S.el('line', {x1:k.x, y1:k.y - 24, x2:k.x, y2:400, stroke:S.T('accent'), 'stroke-width':1.5}, s);
+  if (!NIB) S.bezierHandles(s, {anchors:M, which:[5]}, {shape:'square', size:16});
+  else S.bezierHandles(s, {anchors:M, which:[5]}, {shape:'dot', handles:false, size:20, ring:5});
+})();
+
+/* ---------- 05 流向：贯穿线 = 最粗的那一股流的中线 ---------- */
+(function(){
+  const xm = (F.xa + F.xb) / 2;
+  const A = [edgeIn(Y45, 200), {x:F.xa, y:Y45, a:0, i:200, o:xm - F.xa}, {x:F.xb, y:Y56, a:0, i:F.xb - xm, o:200}, edgeOut(Y56, 200)];
+  if (NIB) {  // ribbon：线一进色带就「涨」成这股流，色带内不再叠线
+    S.bezierThread($('b5-f'), {anchors:A}, {field:S.T('bg-soft'), only:'field'});
+    S.bezierThread($('b5-c'), {anchors:A.slice(0, 2)}, {...lineOpt(), only:'line'});
+    S.bezierThread($('b5-c'), {anchors:A.slice(2)}, {...lineOpt(), only:'line'});
+  } else thread($('b5-c'), A);
+  const lab = $('b5-lab');
+  FLOW.left.forEach((n, i) => lab.insertAdjacentHTML('beforeend',
+    `<div class="flab l${i === 0 ? ' hi' : ''}" style="right:${1920 - 560 + 24}px;top:${F.left[i].y0 - 4}px">${n.n}<small>${n.v.toFixed(1)} h</small></div>`));
+  FLOW.right.forEach((n, i) => lab.insertAdjacentHTML('beforeend',
+    `<div class="flab r${i === 3 ? ' hi' : ''}" style="left:${1352 + 8 + 24}px;top:${F.right[i].y0 - 4}px">${n.n}<small>${n.v.toFixed(1)} h</small></div>`));
+  lab.insertAdjacentHTML('beforeend', `<div class="abs label colh" style="right:${1920 - 568}px;top:282px">时段</div><div class="abs label colh" style="left:1352px;top:282px">用途</div>`);
+})();
+
+/* ---------- 06 结尾：线收在一个终点，虚线柄指向下一步 ---------- */
+(function(){
+  const s = $('b6-c');
+  const end = {x:1560, y:680, a:-90, i:220, o:0};
+  const A = [edgeIn(Y56, 520), {x:1060, y:910, a:0, i:320, o:280}, end];
+  thread(s, A, {field:false});  // 线到这里收住，色面也随之结束
+  S.el('line', {x1:end.x, y1:end.y, x2:end.x, y2:end.y - 190, stroke:S.T('accent'), 'stroke-width':2, 'stroke-dasharray':'3 9', 'stroke-linecap':'round'}, s);
+  S.el('circle', {cx:end.x, cy:end.y - 190, r:6, fill:S.T('accent')}, s);
+  S.bezierHandles(s, {anchors:[end], which:[0]}, NIB ? {shape:'dot', handles:false, size:22, ring:5} : {shape:'square', size:18, handles:false});
+})();
+</script>
+</body>
+</html>
