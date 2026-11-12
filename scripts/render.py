@@ -38,6 +38,7 @@ with sync_playwright() as p:
     pg.on("console", lambda m: m.type == "error" and errors.append(f"console: {m.text}"))
     pg.goto(src.as_uri() + (f"?theme={theme}" if theme else ""))
     pg.evaluate("document.fonts.ready")
+    pg.add_style_tag(content=".notes{display:none !important}")  # 讲稿只进 PPTX 备注
     pg.wait_for_timeout(400)
     ids = pg.eval_on_selector_all(".slide", "els => els.map(e => e.id)")
     for i in ids:

@@ -66,7 +66,8 @@ compatibility: 需要 macOS、Google Chrome 和 uv（渲染时用 playwright 调
    - 每页一个 `<section class="slide">`，尺寸 1920×1080。
 2. 页面 `<style>` 里只写坐标和尺寸。颜色都用 `var(--c-*)`，或者在 JS 里用 `Shapes.T('角色名')` 读取。
 3. 照片位用 `<div class="photo" data-label="…">`。有真图时在里面放 `<img>`。
-4. 渲染命令：
+4. 要出 PPTX 时，边写页面边加动画标注和讲稿：`data-anim` / `data-step`，`<aside class="notes">`。规则和设计原则见 **`guide/animation.md`**。几个元素一起出场时，用 `.grp` 包起来，不要用普通 `<div>`。
+5. 渲染命令：
 
 ```bash
 uv run --with playwright python scripts/render.py <deck.html> <输出目录> [主题名]
@@ -81,7 +82,16 @@ uv run --with playwright python scripts/render.py <deck.html> <输出目录> [�
 
 ### 06 交付
 
-把 PNG 和 PDF（`render.py` 已经生成）交给用户，让用户自己看效果。目前不支持导出可编辑的 PPTX；要修改就改 HTML 再重新渲染。
+把 PNG 和 PDF（`render.py` 已经生成）交给用户，让用户自己看效果。
+
+需要在 PowerPoint 或 WPS 里放映，或者需要动画时，导出 PPTX：
+
+```bash
+uv run --with playwright --with python-pptx --with pillow --with lxml \
+  python scripts/export_pptx.py <deck.html> <输出目录>/deck.pptx [--theme 主题名]
+```
+
+PPTX 里每页是一张底图加若干透明图层，带 PowerPoint 原生的动画、切换和备注。文字不能在 PPT 里直接改；要修改就改 HTML，再重新渲染和导出。
 
 ## 文件索引
 
@@ -97,6 +107,9 @@ uv run --with playwright python scripts/render.py <deck.html> <输出目录> [�
 | `lib/shapes.js` | 19 个 SVG 生成器（结构、数据、装饰、手绘） | 阶段 04 |
 | `lib/base.css` | 重置样式、画布、照片位 | 阶段 04 |
 | `scripts/render.py` | 渲染、检查、导出 PNG 和 PDF | 阶段 04、05 |
+| `guide/animation.md` | 动画标注、拆层规则、动画怎么设计 | 要出 PPTX 时，阶段 04 |
+| `scripts/export_pptx.py` | 拆层导出带动画的 PPTX | 阶段 06 |
+| `scripts/vendor/ppt_master/` | 动画和切换的 OOXML 生成器（来自 PPT Master，MIT） | 不用读 |
 | `scripts/pixeldiff.py` | 逐像素对比，用来回归检查 | 改了 `lib/` 之后 |
 | `scripts/fontcheck.py` | 查 Chrome 实际用上的字体 | 新建主题、换字体时 |
 
@@ -104,5 +117,5 @@ uv run --with playwright python scripts/render.py <deck.html> <输出目录> [�
 
 - 01 到 03 阶段还没有脚本，靠按上面的说明手工完成。
 - `guide/organization.md`（整套 deck 的章节骨架、页型角色、节奏）还没写。
-- 不支持导出可编辑的 PPTX。
+- PPTX 里的文字是图片，不能在 PPT 里改（为了观感一致和字体不丢，有意这样设计）。
 - 字体不能跨机器：换到非 macOS 环境时，要改用可打包的开源网页字体。

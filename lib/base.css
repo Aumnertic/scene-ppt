@@ -5,6 +5,10 @@ body{background:#2a2a2a;font-family:var(--f-sans);color:var(--c-ink)}
 .slide{width:1920px;height:1080px;position:relative;overflow:hidden;margin:0 auto 40px;background:var(--c-surface)}
 .abs{position:absolute}
 svg{display:block}
+/* 动画分组（导出 PPTX 用，见 guide/animation.md）：铺满父级定位盒的透明盒子，
+ * 包进去的元素坐标、换行宽度都不变，并保持 z-index:1 的层叠。 */
+.grp{position:absolute;inset:0;z-index:1;pointer-events:none}
+.notes{display:none}  /* 讲稿：只进 PPTX 备注页 */
 
 /* ---------- 照片位 ----------
  * 用法：<div class="photo" data-label="班级合影"></div>

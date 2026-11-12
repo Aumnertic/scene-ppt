@@ -1,6 +1,6 @@
 # scene-ppt
 
-按使用场景设计中文 PPT 的 Claude Code Skill。先问清场合、受众和用途，再根据场景和材料选风格，用 HTML/SVG 渲染出有设计感的页面，导出 PNG 和 PDF。
+按使用场景设计中文 PPT 的 Claude Code Skill。先问清场合、受众和用途，再根据场景和材料选风格，用 HTML/SVG 渲染出有设计感的页面，导出 PNG、PDF，以及带 PowerPoint 原生动画的 PPTX。
 
 AI 直出的 PPT 往往只有卡片和平涂色。这个 Skill 走 HTML/SVG 路线，能做复杂形状、结构图和密排版。
 
@@ -21,7 +21,8 @@ AI 直出的 PPT 往往只有卡片和平涂色。这个 Skill 走 HTML/SVG 路�
 SKILL.md        入口与流程
 guide/          设计指导：形状怎么选、反面清单
 lib/            共用 SVG 形状库 shapes.js、base.css
-scripts/        render.py（渲染 + 溢出检查 + 导出）、fontcheck.py、pixeldiff.py
+scripts/        render.py（渲染 + 溢出检查 + 导出 PNG/PDF）、export_pptx.py（拆层导出带动画的 PPTX）、fontcheck.py、pixeldiff.py
+scripts/vendor/ppt_master/  动画与切换的 OOXML 生成器，来自 PPT Master（MIT）
 styles/<分支>/   tokens.css、components.css、style.md、exemplar/
 ```
 
@@ -43,6 +44,12 @@ uv run --with playwright python scripts/render.py deck.html out [theme]
 
 施工中。`roadshow-cn` 是已验收的基准，其余分支是草稿。
 
+PPTX：
+
+```sh
+uv run --with playwright --with python-pptx --with pillow --with lxml python scripts/export_pptx.py deck.html out/deck.pptx
+```
+
 ## License
 
-MIT
+MIT。`scripts/vendor/ppt_master/` 来自 [PPT Master](https://github.com/hugohe3/ppt-master)，Copyright (c) 2025-2026 Hugo He，MIT，许可证随附在该目录。
